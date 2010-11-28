@@ -1,12 +1,14 @@
 package AStarDickinson.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.Collection;
 import java.util.TreeSet;
 import java.util.Vector;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,6 +27,7 @@ import AStarDickinson.datastructs.MapPath;
 public class ControlPanel extends JPanel implements ActionListener {
 	private Vector destNodes;
 	private ImagePanel imagePanel;
+	private ReportPanel reportPanel;
 	private JCheckBox drawNodes;
 	private JCheckBox drawCandidatePaths;
 	private JCheckBox drawFinalPath;
@@ -34,9 +37,11 @@ public class ControlPanel extends JPanel implements ActionListener {
 	private JButton search;
 	private MapPath path;
 	
-	public ControlPanel(ImagePanel imagePanel,final Collection<MapNode> allnodes) {
+	public ControlPanel(ImagePanel imagePanel,ReportPanel reportPanel,final Collection<MapNode> allnodes) {
 		this.imagePanel = imagePanel;
+		this.reportPanel = reportPanel;
 		
+		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Controls"));
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setDestinations(allnodes);
 		this.setPreferredSize(new Dimension(300,300));
@@ -125,6 +130,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 			PathFinder finder = this.getSelectedAlgorithm();
 			if (finder != null) {
 				AlgorithmReport report = finder.findPath(imagePanel,path.getStart(), path.getEnd());
+				this.reportPanel.setAlgorithmReport(report);
 			}
 		}
 		imagePanel.repaint();

@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -48,8 +50,9 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 		
 		this.setPreferredSize(new Dimension(this.getImageWidth(),this.getImageHeight()));
 		
-		if (AStarDickinson.AStarDickinson.NODE_MARKING)
+		if (AStarDickinson.AStarDickinson.NODE_MARKING) {
 			this.addMouseListener(this);
+		}
 	}
 
 	public MapPath getPath() {

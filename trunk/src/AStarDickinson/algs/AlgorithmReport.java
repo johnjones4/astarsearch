@@ -35,4 +35,12 @@ public class AlgorithmReport {
 	public Collection<MapNode> getConsidertedNodes() {
 		return considertedNodes;
 	}
+	
+	public int getNumNodesConsidered() {
+		return considertedNodes.size();
+	}
+	
+	public int getNumSolutionNodes() {
+		return finalPath.getPath().size();
+	}
 }
