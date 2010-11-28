@@ -3,6 +3,7 @@ package AStarDickinson.datastructs;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MapPath {
 	private LinkedList<MapNode> path;
@@ -52,5 +53,21 @@ public class MapPath {
 	
 	public MapNode getLastComponent() {
 		return path.getLast();
+	}
+	
+	public double getPathDistance() {
+		if (this.path.size() > 1) {
+			ListIterator<MapNode> iterator = this.path.listIterator();
+			MapNode node = iterator.next();
+			double distance = 0;
+			while(iterator.hasNext()) {
+				MapNode thisNode = iterator.next();
+				distance += node.getEdgeDistance(thisNode);
+				node = thisNode;
+			}
+			return distance;
+		} else {
+			return 1;
+		}
 	}
 }

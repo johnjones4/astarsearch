@@ -1,5 +1,6 @@
 package AStarDickinson;
 
+import java.awt.BorderLayout;
 import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import org.w3c.dom.NodeList;
 import AStarDickinson.datastructs.MapNode;
 import AStarDickinson.gui.ControlPanel;
 import AStarDickinson.gui.ImagePanel;
+import AStarDickinson.gui.ReportPanel;
 
 public class AStarDickinson {
 	public static final String DEFAULT_IMAGE = "dickinson1.jpg";
@@ -41,8 +43,13 @@ public class AStarDickinson {
 		frame.addComponentListener(panel);
 		
 		// Construct the GUI Windows
-		ControlPanel controlPanel = new ControlPanel(panel,nodes);
-		makeFrame(controlPanel);
+		ReportPanel reportPanel = new ReportPanel();
+		ControlPanel controlPanel = new ControlPanel(panel,reportPanel,nodes);
+		JPanel panel1 = new JPanel(new BorderLayout());
+		panel1.getInsets().set(10, 10, 10, 10);
+		panel1.add(controlPanel,BorderLayout.PAGE_START);
+		panel1.add(reportPanel,BorderLayout.PAGE_END);
+		JFrame frame1 = makeFrame(panel1);
 	}
 	
 	private static JFrame makeFrame(JPanel panel) {
