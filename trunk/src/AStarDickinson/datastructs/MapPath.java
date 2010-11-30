@@ -62,7 +62,7 @@ public class MapPath {
 			double distance = 0;
 			while(iterator.hasNext()) {
 				MapNode thisNode = iterator.next();
-				distance += node.getEdgeDistance(thisNode);
+				distance += node.getDistanceToNode(thisNode);
 				node = thisNode;
 			}
 			return distance;

@@ -78,16 +78,12 @@ public class MapNode implements Comparable<MapNode> {
 		return this.name;
 	}
 	
-	public double getEdgeDistance(MapNode vertex) {
-		if (this.edges.contains(vertex)) {
-			int x1 = this.point.getx();
-			int y1 = this.point.gety();
-			int x2 = vertex.point.getx();
-			int y2 = vertex.point.gety();
-			return Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
-		} else {
-			return 0;
-		}
+	public double getDistanceToNode(MapNode vertex) {
+		int x1 = this.point.getx();
+		int y1 = this.point.gety();
+		int x2 = vertex.point.getx();
+		int y2 = vertex.point.gety();
+		return Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
 	}
 
 	public Element xml(Document doc) {
