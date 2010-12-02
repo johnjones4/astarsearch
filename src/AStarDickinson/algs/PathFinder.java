@@ -9,8 +9,9 @@ import AStarDickinson.datastructs.MapPath;
 import AStarDickinson.gui.ImagePanel;
 
 public abstract class PathFinder implements Comparable<PathFinder> {
-	public abstract AlgorithmReport findPath(ImagePanel panel,MapNode start,MapNode end);
+	public abstract AlgorithmReport findPath(PathFinderDelegate delegate,MapNode start,MapNode end);
 	public abstract String toString();
+	public abstract String getShortName();
 	
 	@Override
 	public int compareTo(PathFinder o) {
@@ -22,33 +23,5 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 		algs.add(new BreadthFirstSearch());
 		algs.add(new AStarSearch());
 		return algs;
-	}
-	
-	protected AlgorithmReport treeSearch(ImagePanel panel,MapNode start, MapNode end, Queue<MapPath> frontier, Collection<MapNode> visited, Collection<MapPath> exploredPaths) {
-		panel.setCandidatePaths(exploredPaths);
-		panel.repaint();
-		
-		MapPath path = new MapPath(start,end);
-		path.addNode(start);
-		frontier.add(path);
-		visited.add(start);
-		
-		while(frontier.size() > 0) {
-			MapPath path1 = frontier.poll();
-			exploredPaths.add(path1);
-			for(MapNode child: path1.getLastComponent().getEdges()) {
-				if (child.equals(end)) {
-					MapPath finalPath = path1.cloneWithAddedNode(child);
-					panel.setPath(finalPath);
-					return new AlgorithmReport(finalPath,exploredPaths,visited);
-				} else if (!visited.contains(child)) {
-					visited.add(child);
-					frontier.add(path1.cloneWithAddedNode(child));
-				}
-				panel.repaint();
-			}
-		}
-		
-		return null;
 	}
 }

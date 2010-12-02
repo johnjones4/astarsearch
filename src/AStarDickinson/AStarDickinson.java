@@ -28,7 +28,9 @@ public class AStarDickinson {
 	public static final String DEFAULT_IMAGE = "dickinson1.jpg";
 	public static final String DEFAULT_DATA = "mapData1.xml";
 	public static final boolean ASSERT_UNDIRECTED = true;
-	public static final boolean NODE_MARKING = false;
+	public static final boolean NODE_MARKING = true;
+	
+	private static final String GUI_FLAG = "-g";
 	
 	/**
 	 * @param args
@@ -37,23 +39,31 @@ public class AStarDickinson {
 	public static void main(String[] args) throws Exception {
 		Collection<MapNode> nodes = readNodes();
 		
-		// Construct the GUI Windows
-		ImagePanel panel = new ImagePanel(DEFAULT_IMAGE,nodes,.65);
-		JFrame frame = makeFrame(panel);
-		frame.addComponentListener(panel);
-		
-		// Construct the GUI Windows
-		ReportPanel reportPanel = new ReportPanel();
-		ControlPanel controlPanel = new ControlPanel(panel,reportPanel,nodes);
-		JPanel panel1 = new JPanel(new BorderLayout());
-		panel1.getInsets().set(10, 10, 10, 10);
-		panel1.add(controlPanel,BorderLayout.PAGE_START);
-		panel1.add(reportPanel,BorderLayout.PAGE_END);
-		JFrame frame1 = makeFrame(panel1);
+		if (args.length == 1 && args[0].equals(GUI_FLAG)) {
+			// Construct the GUI Windows
+			ImagePanel panel = new ImagePanel(DEFAULT_IMAGE,nodes,.65);
+			JFrame frame = makeFrame(panel);
+			frame.addComponentListener(panel);
+			
+			// Construct the GUI Windows
+			ReportPanel reportPanel = new ReportPanel();
+			ControlPanel controlPanel = new ControlPanel(panel,reportPanel,nodes);
+			JPanel panel1 = new JPanel(new BorderLayout());
+			panel1.getInsets().set(10, 10, 10, 10);
+			panel1.add(controlPanel,BorderLayout.PAGE_START);
+			panel1.add(reportPanel,BorderLayout.PAGE_END);
+			JFrame frame1 = makeFrame(panel1);
+		} else {
+			String startLocation = args[0];
+			String endLocation = args[1];
+			String algName = args[2];
+			
+			
+		}
 	}
 	
 	private static JFrame makeFrame(JPanel panel) {
-		JFrame frame = new JFrame("Dickinson Navigation System");
+		JFrame frame = new JFrame("A* Search");
 		frame.getContentPane().add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
