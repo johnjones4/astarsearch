@@ -14,11 +14,35 @@ import AStarDickinson.gui.ImagePanel;
 public class AStarSearch extends PathFinder {
 
 	@Override
-	public AlgorithmReport findPath(ImagePanel panel,MapNode start, MapNode end) {
+	public AlgorithmReport findPath(PathFinderDelegate delegate,MapNode start, MapNode end) {
 		PriorityQueue<MapPath> frontier = new PriorityQueue<MapPath>(20,new AStarComparator(end));
 		Collection<MapNode> visited = new HashSet<MapNode>();
 		Collection<MapPath> exploredPaths = new LinkedList<MapPath>();
-		return super.treeSearch(panel, start, end, frontier, visited, exploredPaths);
+		
+		delegate.setCandidatePathsCollection(exploredPaths);
+		
+		MapPath path = new MapPath(start,end);
+		path.addNode(start);
+		frontier.add(path);
+		visited.add(start);
+		
+		while(frontier.size() > 0) {
+			MapPath path1 = frontier.poll();
+			exploredPaths.add(path1);
+			for(MapNode child: path1.getLastComponent().getEdges()) {
+				if (child.equals(end)) {
+					MapPath finalPath = path1.cloneWithAddedNode(child);
+					delegate.setFinalPath(finalPath);
+					return new AlgorithmReport(finalPath,exploredPaths,visited);
+				} else if (!visited.contains(child)) {
+					visited.add(child);
+					frontier.add(path1.cloneWithAddedNode(child));
+				}
+				delegate.pathsWereUpdated();
+			}
+		}
+		
+		return null;
 	}
 
 	@Override
@@ -48,5 +72,10 @@ public class AStarSearch extends PathFinder {
 		private double hOfN(MapPath path) {
 			return path.getLastComponent().getDistanceToNode(destination);
 		}
+	}
+
+	@Override
+	public String getShortName() {
+		return "A*";
 	}
 }

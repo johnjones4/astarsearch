@@ -15,17 +15,6 @@
         </edges>
     </node>
     <node destination="false">
-        <name>High &amp; West St East Corner</name>
-        <point>
-            <x>1241</x>
-            <y>470</y>
-        </point>
-        <edges>
-            <edge>High &amp; West St West Corner</edge>
-            <edge>Denny South Door</edge>
-        </edges>
-    </node>
-    <node destination="false">
         <name>ATS Parking Lot</name>
         <point>
             <x>590</x>
@@ -35,6 +24,18 @@
             <edge>ATS Small Parking Lot</edge>
             <edge>Library Dickinson Walk Intersection</edge>
             <edge>ATS Lot Entrance</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High &amp; West St East Corner</name>
+        <point>
+            <x>1241</x>
+            <y>470</y>
+        </point>
+        <edges>
+            <edge>High &amp; West St West Corner</edge>
+            <edge>Denny South Door</edge>
+            <edge>High and West SE Corner</edge>
         </edges>
     </node>
     <node destination="false">
@@ -127,6 +128,9 @@
         </point>
         <edges>
             <edge>Tome Sidewalk 2</edge>
+            <edge>Tome Telescopr Door East</edge>
+            <edge>Tome Telescopr Door East</edge>
+            <edge>Tome Telescope Door West</edge>
         </edges>
     </node>
     <node destination="false">
@@ -143,6 +147,20 @@
         </edges>
     </node>
     <node destination="false">
+        <name>Dickinson Walk Entrance</name>
+        <point>
+            <x>274</x>
+            <y>241</y>
+        </point>
+        <edges>
+            <edge>Upper Quads West Intersection</edge>
+            <edge>Lower Quads Intersection</edge>
+            <edge>Quads SW Intersection</edge>
+            <edge>Depot Intersection</edge>
+            <edge>Kline Cherry</edge>
+        </edges>
+    </node>
+    <node destination="false">
         <name>Drayer North Intersection</name>
         <point>
             <x>794</x>
@@ -153,18 +171,6 @@
             <edge>High &amp; College NW Corner</edge>
             <edge>Drayer College Street North Intersection</edge>
             <edge>Drayer Intersection</edge>
-        </edges>
-    </node>
-    <node destination="false">
-        <name>Dickinson Walk Entrance</name>
-        <point>
-            <x>274</x>
-            <y>241</y>
-        </point>
-        <edges>
-            <edge>Upper Quads West Intersection</edge>
-            <edge>Lower Quads Intersection</edge>
-            <edge>Quads SW Intersection</edge>
         </edges>
     </node>
     <node destination="false">
@@ -264,6 +270,8 @@
         <edges>
             <edge>Quads SW Intersection</edge>
             <edge>Quads Central Intersection</edge>
+            <edge>Cherry Street Shorcut</edge>
+            <edge>High and College NW Corner</edge>
         </edges>
     </node>
     <node destination="false">
@@ -465,6 +473,8 @@
             <edge>Durden's House Front Door</edge>
             <edge>Durden's House Side Door Intersection</edge>
             <edge>High &amp; West St West Corner</edge>
+            <edge>High and West SE Corner</edge>
+            <edge>Durden's House East Intersection</edge>
         </edges>
     </node>
     <node destination="true">
@@ -480,18 +490,6 @@
         </edges>
     </node>
     <node destination="false">
-        <name>Bosler Althouse Intersection</name>
-        <point>
-            <x>919</x>
-            <y>322</y>
-        </point>
-        <edges>
-            <edge>Bosler Rear</edge>
-            <edge>Bosler Gate Intersection</edge>
-            <edge>College Street Gate</edge>
-        </edges>
-    </node>
-    <node destination="false">
         <name>Admissions Intersection</name>
         <point>
             <x>900</x>
@@ -504,43 +502,15 @@
         </edges>
     </node>
     <node destination="false">
-        <name>Bosler Old West Intersection</name>
+        <name>Bosler Althouse Intersection</name>
         <point>
-            <x>989</x>
-            <y>346</y>
-        </point>
-        <edges>
-            <edge>Bosler Front</edge>
-            <edge>Althouse</edge>
-            <edge>Old West West Intersection</edge>
-        </edges>
-    </node>
-    <node destination="false">
-        <name>Bosler Gate Intersection</name>
-        <point>
-            <x>913</x>
-            <y>401</y>
+            <x>919</x>
+            <y>322</y>
         </point>
         <edges>
             <edge>Bosler Rear</edge>
-            <edge>Bosler Althouse Intersection</edge>
-            <edge>High &amp; College St Gate</edge>
-        </edges>
-    </node>
-    <node destination="false">
-        <name>KW Dickinson Walk Intersection</name>
-        <point>
-            <x>493</x>
-            <y>258</y>
-        </point>
-        <edges>
-            <edge>Library Dickinson Walk Intersection</edge>
-            <edge>Quads Dickinson Walk Intersection</edge>
-            <edge>Sand Volleyball Court</edge>
-            <edge>KW Front</edge>
-            <edge>McKenny Suites</edge>
-            <edge>McKenny Intersection</edge>
-            <edge>McKenny Library Intersection</edge>
+            <edge>Bosler Gate Intersection</edge>
+            <edge>College Street Gate</edge>
         </edges>
     </node>
     <node destination="false">
@@ -560,15 +530,43 @@
         </edges>
     </node>
     <node destination="false">
-        <name>HUB Social Hall Entrace College St</name>
+        <name>KW Dickinson Walk Intersection</name>
         <point>
-            <x>847</x>
-            <y>355</y>
+            <x>493</x>
+            <y>258</y>
         </point>
         <edges>
-            <edge>HUB Front Door</edge>
-            <edge>High &amp; College SW Corner</edge>
-            <edge>HUB Social Hall Door Britton Plaza</edge>
+            <edge>Library Dickinson Walk Intersection</edge>
+            <edge>Quads Dickinson Walk Intersection</edge>
+            <edge>Sand Volleyball Court</edge>
+            <edge>KW Front</edge>
+            <edge>McKenny Suites</edge>
+            <edge>McKenny Intersection</edge>
+            <edge>McKenny Library Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Bosler Gate Intersection</name>
+        <point>
+            <x>913</x>
+            <y>401</y>
+        </point>
+        <edges>
+            <edge>Bosler Rear</edge>
+            <edge>Bosler Althouse Intersection</edge>
+            <edge>High &amp; College St Gate</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Bosler Old West Intersection</name>
+        <point>
+            <x>989</x>
+            <y>346</y>
+        </point>
+        <edges>
+            <edge>Bosler Front</edge>
+            <edge>Althouse</edge>
+            <edge>Old West West Intersection</edge>
         </edges>
     </node>
     <node destination="true">
@@ -580,6 +578,18 @@
         <edges>
             <edge>KW Dickinson Walk Intersection</edge>
             <edge>Volley Ball Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>HUB Social Hall Entrace College St</name>
+        <point>
+            <x>847</x>
+            <y>355</y>
+        </point>
+        <edges>
+            <edge>HUB Front Door</edge>
+            <edge>High &amp; College SW Corner</edge>
+            <edge>HUB Social Hall Door Britton Plaza</edge>
         </edges>
     </node>
     <node destination="false">
@@ -605,6 +615,17 @@
             <edge>Drayer Intersection</edge>
             <edge>Witwer Front Door</edge>
             <edge>Morgan Ramp</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Weiss Back Intersection</name>
+        <point>
+            <x>1042</x>
+            <y>613</y>
+        </point>
+        <edges>
+            <edge>Drayer College Street North Intersection</edge>
+            <edge>Weiss Side Door</edge>
         </edges>
     </node>
     <node destination="false">
@@ -803,6 +824,7 @@
         <edges>
             <edge>Malcom North Intersection</edge>
             <edge>Mooreland &amp; High SE Corner</edge>
+            <edge>Malcom High St Intersection</edge>
         </edges>
     </node>
     <node destination="false">
@@ -992,6 +1014,7 @@
         <edges>
             <edge>Tome Sidewalk 3</edge>
             <edge>ATS Lot Entrance</edge>
+            <edge>425 W. Louther St</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1020,6 +1043,7 @@
             <edge>Morgan Ramp</edge>
             <edge>Morgan Crosswalk</edge>
             <edge>Morgan Front Door</edge>
+            <edge>Morgan Field Side Entrance</edge>
         </edges>
     </node>
     <node destination="true">
@@ -1151,6 +1175,7 @@
         <edges>
             <edge>Durden's House Side Door</edge>
             <edge>High &amp; West SW Corner</edge>
+            <edge>Durden's House East Door</edge>
         </edges>
     </node>
     <node destination="true">
@@ -1161,6 +1186,7 @@
         </point>
         <edges>
             <edge>Tome Sidewalk 3</edge>
+            <edge>Tome Telescopr Door East</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1214,18 +1240,6 @@
             <edge>Quads SW Intersection</edge>
         </edges>
     </node>
-    <node destination="false">
-        <name>Armstrong Intersection</name>
-        <point>
-            <x>325</x>
-            <y>195</y>
-        </point>
-        <edges>
-            <edge>Atware Intersection</edge>
-            <edge>Armstrong Intersection 1</edge>
-            <edge>Amrstrong Door</edge>
-        </edges>
-    </node>
     <node destination="true">
         <name>Old West West Door</name>
         <point>
@@ -1238,6 +1252,18 @@
         </edges>
     </node>
     <node destination="false">
+        <name>Armstrong Intersection</name>
+        <point>
+            <x>325</x>
+            <y>195</y>
+        </point>
+        <edges>
+            <edge>Atware Intersection</edge>
+            <edge>Armstrong Intersection 1</edge>
+            <edge>Amrstrong Door</edge>
+        </edges>
+    </node>
+    <node destination="false">
         <name>Malcom High St Intersection</name>
         <point>
             <x>485</x>
@@ -1246,6 +1272,7 @@
         <edges>
             <edge>ROTC Houses</edge>
             <edge>Malcom Side Door</edge>
+            <edge>Mooreland &amp; High SW Corner</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1270,6 +1297,17 @@
         <edges>
             <edge>DaWi Back Door</edge>
             <edge>Volley Ball Intersection</edge>
+            <edge>Cherry and Louther SE 2 Corner</edge>
+        </edges>
+    </node>
+    <node destination="true">
+        <name>Adams Front Door</name>
+        <point>
+            <x>748</x>
+            <y>757</y>
+        </point>
+        <edges>
+            <edge>Drayer Intersection</edge>
         </edges>
     </node>
     <node destination="true">
@@ -1285,16 +1323,6 @@
             <edge>College &amp; Louther SW Corner</edge>
             <edge>HUB Britton Plaza Door</edge>
             <edge>HUB Back Door</edge>
-        </edges>
-    </node>
-    <node destination="true">
-        <name>Adams Front Door</name>
-        <point>
-            <x>748</x>
-            <y>757</y>
-        </point>
-        <edges>
-            <edge>Drayer Intersection</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1373,7 +1401,9 @@
             <x>715</x>
             <y>52</y>
         </point>
-        <edges/>
+        <edges>
+            <edge>Tome Front Door</edge>
+        </edges>
     </node>
     <node destination="true">
         <name>Witwer East Door</name>
@@ -1400,6 +1430,17 @@
         </edges>
     </node>
     <node destination="true">
+        <name>ROTC Houses</name>
+        <point>
+            <x>428</x>
+            <y>418</y>
+        </point>
+        <edges>
+            <edge>Malcom High St Intersection</edge>
+            <edge>High St Corner SE</edge>
+        </edges>
+    </node>
+    <node destination="true">
         <name>Quarry</name>
         <point>
             <x>904</x>
@@ -1408,16 +1449,6 @@
         <edges>
             <edge>College Street Gate</edge>
             <edge>College &amp; Louther SE Corner</edge>
-        </edges>
-    </node>
-    <node destination="true">
-        <name>ROTC Houses</name>
-        <point>
-            <x>428</x>
-            <y>418</y>
-        </point>
-        <edges>
-            <edge>Malcom High St Intersection</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1429,6 +1460,7 @@
         <edges>
             <edge>Amrstrong Door</edge>
             <edge>Dickinson Walk Entrance</edge>
+            <edge>Cherry and Louther SE 1 Corner</edge>
         </edges>
     </node>
     <node destination="true">
@@ -1441,29 +1473,7 @@
             <edge>Rector Sidewalk Intersection</edge>
             <edge>Tome Sidewalk 1</edge>
             <edge>Tome Sidewalk 2</edge>
-        </edges>
-    </node>
-    <node destination="true">
-        <name>Amrstrong Door</name>
-        <point>
-            <x>304</x>
-            <y>196</y>
-        </point>
-        <edges>
-            <edge>Armstrong Intersection</edge>
-            <edge>Upper Quads West Intersection</edge>
-        </edges>
-    </node>
-    <node destination="true">
-        <name>ATS Back Door</name>
-        <point>
-            <x>669</x>
-            <y>283</y>
-        </point>
-        <edges>
-            <edge>Britton Plaza Ramp</edge>
-            <edge>Library Dickinson Walk Intersection</edge>
-            <edge>ATS Front Door</edge>
+            <edge>Tome Back Door</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1480,6 +1490,40 @@
             <edge>ATS Small Lot Entrance</edge>
         </edges>
     </node>
+    <node destination="true">
+        <name>ATS Back Door</name>
+        <point>
+            <x>669</x>
+            <y>283</y>
+        </point>
+        <edges>
+            <edge>Britton Plaza Ramp</edge>
+            <edge>Library Dickinson Walk Intersection</edge>
+            <edge>ATS Front Door</edge>
+        </edges>
+    </node>
+    <node destination="true">
+        <name>Amrstrong Door</name>
+        <point>
+            <x>304</x>
+            <y>196</y>
+        </point>
+        <edges>
+            <edge>Armstrong Intersection</edge>
+            <edge>Upper Quads West Intersection</edge>
+        </edges>
+    </node>
+    <node destination="true">
+        <name>KW Rear</name>
+        <point>
+            <x>518</x>
+            <y>212</y>
+        </point>
+        <edges>
+            <edge>Library Dickinson Walk Intersection</edge>
+            <edge>ATS Lot Entrance</edge>
+        </edges>
+    </node>
     <node destination="false">
         <name>Morgan Crosswalk</name>
         <point>
@@ -1493,17 +1537,6 @@
             <edge>High &amp; College NW Corner</edge>
             <edge>Morgan Ramp</edge>
             <edge>Drayer Intersection</edge>
-        </edges>
-    </node>
-    <node destination="true">
-        <name>KW Rear</name>
-        <point>
-            <x>518</x>
-            <y>212</y>
-        </point>
-        <edges>
-            <edge>Library Dickinson Walk Intersection</edge>
-            <edge>ATS Lot Entrance</edge>
         </edges>
     </node>
     <node destination="true">
@@ -1543,6 +1576,17 @@
             <edge>Admissions Intersection</edge>
         </edges>
     </node>
+    <node destination="true">
+        <name>Atwater Door</name>
+        <point>
+            <x>349</x>
+            <y>223</y>
+        </point>
+        <edges>
+            <edge>Quads Dickinson Walk Intersection</edge>
+            <edge>Dawi Intersection</edge>
+        </edges>
+    </node>
     <node destination="false">
         <name>High &amp; College NE Corner</name>
         <point>
@@ -1555,15 +1599,18 @@
             <edge>Admissions Intersection</edge>
         </edges>
     </node>
-    <node destination="true">
-        <name>Atwater Door</name>
+    <node destination="false">
+        <name>50 Mooreland Intersection</name>
         <point>
-            <x>349</x>
-            <y>223</y>
+            <x>500</x>
+            <y>621</y>
         </point>
         <edges>
-            <edge>Quads Dickinson Walk Intersection</edge>
-            <edge>Dawi Intersection</edge>
+            <edge>Malcom South Intersection</edge>
+            <edge>50 Mooreland</edge>
+            <edge>Arts House Intersection</edge>
+            <edge>Arts Haus Door</edge>
+            <edge>Morgan Field Side Entrance</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1580,17 +1627,6 @@
             <edge>Baird McClintock East Door</edge>
             <edge>BM Intersection</edge>
             <edge>Lower Quads Intersection</edge>
-        </edges>
-    </node>
-    <node destination="false">
-        <name>50 Mooreland Intersection</name>
-        <point>
-            <x>500</x>
-            <y>621</y>
-        </point>
-        <edges>
-            <edge>Malcom South Intersection</edge>
-            <edge>50 Mooreland</edge>
         </edges>
     </node>
     <node destination="true">
@@ -1658,16 +1694,6 @@
             <edge>Quads Central Intersection</edge>
         </edges>
     </node>
-    <node destination="false">
-        <name>Baird McClintock East Door</name>
-        <point>
-            <x>393</x>
-            <y>268</y>
-        </point>
-        <edges>
-            <edge>Quads Dickinson Walk Intersection</edge>
-        </edges>
-    </node>
     <node destination="true">
         <name>Malcom Front Door</name>
         <point>
@@ -1679,15 +1705,14 @@
             <edge>Malcom South Intersection</edge>
         </edges>
     </node>
-    <node destination="true">
-        <name>Denny North Door</name>
+    <node destination="false">
+        <name>Baird McClintock East Door</name>
         <point>
-            <x>1255</x>
-            <y>404</y>
+            <x>393</x>
+            <y>268</y>
         </point>
         <edges>
-            <edge>Stuart Intersection</edge>
-            <edge>Denny South Door</edge>
+            <edge>Quads Dickinson Walk Intersection</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1702,6 +1727,17 @@
             <edge>Library High Street Intersection</edge>
             <edge>McKenny Suites</edge>
             <edge>McKenny Library Intersection</edge>
+        </edges>
+    </node>
+    <node destination="true">
+        <name>Denny North Door</name>
+        <point>
+            <x>1255</x>
+            <y>404</y>
+        </point>
+        <edges>
+            <edge>Stuart Intersection</edge>
+            <edge>Denny South Door</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1719,18 +1755,17 @@
             <edge>High &amp; College NE Corner</edge>
         </edges>
     </node>
-    <node destination="false">
-        <name>High Street Gate</name>
+    <node destination="true">
+        <name>HUB Back Door</name>
         <point>
-            <x>1023</x>
-            <y>443</y>
+            <x>769</x>
+            <y>263</y>
         </point>
         <edges>
-            <edge>High &amp; College St Gate</edge>
-            <edge>High &amp; West St West Corner</edge>
-            <edge>Bosler Front</edge>
-            <edge>Middle Intersection</edge>
-            <edge>Weiss Crosswalk</edge>
+            <edge>HUB Backyard</edge>
+            <edge>Britton Plaza Ramp</edge>
+            <edge>HUB Front Door</edge>
+            <edge>HUB Britton Plaza Door</edge>
         </edges>
     </node>
     <node destination="false">
@@ -1746,28 +1781,442 @@
             <edge>Ben Rush Intersection</edge>
         </edges>
     </node>
-    <node destination="true">
-        <name>HUB Back Door</name>
+    <node destination="false">
+        <name>High Street Gate</name>
         <point>
-            <x>769</x>
-            <y>263</y>
+            <x>1023</x>
+            <y>443</y>
         </point>
         <edges>
-            <edge>HUB Backyard</edge>
-            <edge>Britton Plaza Ramp</edge>
-            <edge>HUB Front Door</edge>
-            <edge>HUB Britton Plaza Door</edge>
+            <edge>High &amp; College St Gate</edge>
+            <edge>High &amp; West St West Corner</edge>
+            <edge>Bosler Front</edge>
+            <edge>Middle Intersection</edge>
+            <edge>Weiss Crosswalk</edge>
         </edges>
     </node>
     <node destination="false">
-        <name>Weiss Back Intersection</name>
+        <name>429 W. Louther St</name>
         <point>
-            <x>1042</x>
-            <y>613</y>
+            <x>443</x>
+            <y>95</y>
         </point>
         <edges>
-            <edge>Drayer College Street North Intersection</edge>
-            <edge>Weiss Side Door</edge>
+            <edge>Traintracks Crossing</edge>
+            <edge>425 W. Louther St</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>425 W. Louther St</name>
+        <point>
+            <x>461</x>
+            <y>97</y>
+        </point>
+        <edges>
+            <edge>429 W. Louther St</edge>
+            <edge>Townhouses</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Kaufman Hall</name>
+        <point>
+            <x>379</x>
+            <y>5</y>
+        </point>
+        <edges>
+            <edge>Traintracks Crossing</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Goodyear</name>
+        <point>
+            <x>6</x>
+            <y>46</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther NW</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Kline Center</name>
+        <point>
+            <x>129</x>
+            <y>263</y>
+        </point>
+        <edges>
+            <edge>Kline Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Health Center</name>
+        <point>
+            <x>150</x>
+            <y>212</y>
+        </point>
+        <edges>
+            <edge>Depot Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Depot Intersection</name>
+        <point>
+            <x>215</x>
+            <y>239</y>
+        </point>
+        <edges>
+            <edge>Health Center</edge>
+            <edge>The Depot</edge>
+            <edge>Kline Intersection</edge>
+            <edge>Dickinson Walk Entrance</edge>
+            <edge>Kline Cherry</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>The Depot</name>
+        <point>
+            <x>212</x>
+            <y>261</y>
+        </point>
+        <edges>
+            <edge>Depot Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Kline Intersection</name>
+        <point>
+            <x>146</x>
+            <y>288</y>
+        </point>
+        <edges>
+            <edge>Depot Intersection</edge>
+            <edge>Kline Center</edge>
+            <edge>Pond Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Pond Intersection</name>
+        <point>
+            <x>157</x>
+            <y>313</y>
+        </point>
+        <edges>
+            <edge>Kline Intersection</edge>
+            <edge>Pond High Street Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Pond High Street Intersection</name>
+        <point>
+            <x>151</x>
+            <y>361</y>
+        </point>
+        <edges>
+            <edge>Pond Intersection</edge>
+            <edge>High Street Shortcut</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High and College NW Corner</name>
+        <point>
+            <x>235</x>
+            <y>369</y>
+        </point>
+        <edges>
+            <edge>High Street Shortcut</edge>
+            <edge>Cherry Street Shorcut</edge>
+            <edge>High &amp; Cherry SE Corner</edge>
+            <edge>Kims High St Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Cherry Street Shorcut</name>
+        <point>
+            <x>240</x>
+            <y>350</y>
+        </point>
+        <edges>
+            <edge>High Street Shortcut</edge>
+            <edge>High &amp; Cherry SE Corner</edge>
+            <edge>High and College NW Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High Street Shortcut</name>
+        <point>
+            <x>212</x>
+            <y>367</y>
+        </point>
+        <edges>
+            <edge>Pond High Street Intersection</edge>
+            <edge>Cherry Street Shorcut</edge>
+            <edge>High and College NW Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Miseno's</name>
+        <point>
+            <x>89</x>
+            <y>402</y>
+        </point>
+        <edges>
+            <edge>High and Conway West Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Kim's Cafe</name>
+        <point>
+            <x>246</x>
+            <y>416</y>
+        </point>
+        <edges>
+            <edge>Kims High St Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>50 Mooreland Back Door</name>
+        <point>
+            <x>428</x>
+            <y>616</y>
+        </point>
+        <edges>
+            <edge>50 Mooreland Parking Lot Entrance</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>South College West</name>
+        <point>
+            <x>989</x>
+            <y>634</y>
+        </point>
+        <edges/>
+    </node>
+    <node destination="false">
+        <name>South College East</name>
+        <point>
+            <x>1046</x>
+            <y>646</y>
+        </point>
+        <edges/>
+    </node>
+    <node destination="false">
+        <name>Kims High St Intersection</name>
+        <point>
+            <x>231</x>
+            <y>393</y>
+        </point>
+        <edges>
+            <edge>High Stree Corner SW</edge>
+            <edge>Kim's Cafe</edge>
+            <edge>High and Conway SE Corner</edge>
+            <edge>High and College NW Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High and Conway SE Corner</name>
+        <point>
+            <x>205</x>
+            <y>391</y>
+        </point>
+        <edges>
+            <edge>Kims High St Intersection</edge>
+            <edge>High and Conway West Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High and Conway West Corner</name>
+        <point>
+            <x>181</x>
+            <y>389</y>
+        </point>
+        <edges>
+            <edge>High and Conway SE Corner</edge>
+            <edge>Miseno's</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High Stree Corner SW</name>
+        <point>
+            <x>341</x>
+            <y>407</y>
+        </point>
+        <edges>
+            <edge>High St Corner SE</edge>
+            <edge>Kims High St Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High St Corner SE</name>
+        <point>
+            <x>365</x>
+            <y>411</y>
+        </point>
+        <edges>
+            <edge>ROTC Houses</edge>
+            <edge>High Stree Corner SW</edge>
+            <edge>50 Mooreland Parking Lot Entrance</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>50 Mooreland Parking Lot Entrance</name>
+        <point>
+            <x>344</x>
+            <y>605</y>
+        </point>
+        <edges>
+            <edge>High St Corner SE</edge>
+            <edge>50 Mooreland Back Door</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Arts Haus Door</name>
+        <point>
+            <x>461</x>
+            <y>705</y>
+        </point>
+        <edges>
+            <edge>50 Mooreland Intersection</edge>
+            <edge>Arts House Intersection</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Arts House Intersection</name>
+        <point>
+            <x>489</x>
+            <y>707</y>
+        </point>
+        <edges>
+            <edge>50 Mooreland Intersection</edge>
+            <edge>Arts Haus Door</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Morgan Field Side Entrance</name>
+        <point>
+            <x>524</x>
+            <y>609</y>
+        </point>
+        <edges>
+            <edge>50 Mooreland Intersection</edge>
+            <edge>Morgan Ramp</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>High and West SE Corner</name>
+        <point>
+            <x>1243</x>
+            <y>509</y>
+        </point>
+        <edges>
+            <edge>High &amp; West SW Corner</edge>
+            <edge>High &amp; West St East Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Durden's House East Intersection</name>
+        <point>
+            <x>1204</x>
+            <y>589</y>
+        </point>
+        <edges>
+            <edge>Durden's House East Door</edge>
+            <edge>High &amp; West SW Corner</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Durden's House East Door</name>
+        <point>
+            <x>1166</x>
+            <y>586</y>
+        </point>
+        <edges>
+            <edge>Durden's House East Intersection</edge>
+            <edge>Durden's House Front Door</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Cherry and Louther SE 1 Corner</name>
+        <point>
+            <x>284</x>
+            <y>136</y>
+        </point>
+        <edges>
+            <edge>Upper Quads West Intersection</edge>
+            <edge>Cherry and Louther SE 2 Corner</edge>
+            <edge>Cherry and Louther NE</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Cherry and Louther SE 2 Corner</name>
+        <point>
+            <x>313</x>
+            <y>111</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther SE 1 Corner</edge>
+            <edge>DaWi Louther Intersection</edge>
+            <edge>Cherry and Louther SW</edge>
+            <edge>Cherry and Louther NW</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Cherry and Louther SW</name>
+        <point>
+            <x>263</x>
+            <y>105</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther SE 2 Corner</edge>
+            <edge>Cherry and Louther NW</edge>
+            <edge>Kline Cherry</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Cherry and Louther NW</name>
+        <point>
+            <x>263</x>
+            <y>80</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther SE 2 Corner</edge>
+            <edge>Cherry and Louther NE</edge>
+            <edge>Cherry and Louther SW</edge>
+            <edge>Goodyear</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Cherry and Louther NE</name>
+        <point>
+            <x>285</x>
+            <y>80</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther SE 1 Corner</edge>
+            <edge>Cherry and Louther NW</edge>
+            <edge>Traintracks Crossing</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Kline Cherry</name>
+        <point>
+            <x>250</x>
+            <y>233</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther SW</edge>
+            <edge>Depot Intersection</edge>
+            <edge>Dickinson Walk Entrance</edge>
+        </edges>
+    </node>
+    <node destination="false">
+        <name>Traintracks Crossing</name>
+        <point>
+            <x>332</x>
+            <y>85</y>
+        </point>
+        <edges>
+            <edge>Cherry and Louther NE</edge>
+            <edge>Kaufman Hall</edge>
+            <edge>429 W. Louther St</edge>
         </edges>
     </node>
 </nodes>

@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import AStarDickinson.XMLExporter;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
+import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.datastructs.MapNode;
 import AStarDickinson.datastructs.MapPath;
 
@@ -129,7 +130,26 @@ public class ControlPanel extends JPanel implements ActionListener {
 		} else if (e.getSource() == this.search) {
 			PathFinder finder = this.getSelectedAlgorithm();
 			if (finder != null) {
-				AlgorithmReport report = finder.findPath(imagePanel,path.getStart(), path.getEnd());
+				AlgorithmReport report = finder.findPath(new PathFinderDelegate() {
+					@Override
+					public void pathsWereUpdated() {
+						imagePanel.repaint();
+					}
+
+					@Override
+					public void setCandidatePathsCollection(
+							Collection<MapPath> candidatePaths) {
+						imagePanel.setCandidatePaths(candidatePaths);
+						imagePanel.repaint();
+					}
+
+					@Override
+					public void setFinalPath(MapPath finalPath) {
+						imagePanel.setPath(finalPath);
+						imagePanel.repaint();
+					}
+					
+				},path.getStart(), path.getEnd());
 				this.reportPanel.setAlgorithmReport(report);
 			}
 		}

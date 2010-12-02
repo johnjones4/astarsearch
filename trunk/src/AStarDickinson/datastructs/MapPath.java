@@ -1,6 +1,5 @@
 package AStarDickinson.datastructs;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -69,5 +68,18 @@ public class MapPath {
 		} else {
 			return 1;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		boolean first = true;
+		StringBuilder builder = new StringBuilder();
+		for (MapNode node: this.path) {
+			if (!first)
+				builder.append(", ");
+			first = false;
+			builder.append(node.toString());
+		}
+		return builder.toString();
 	}
 }
