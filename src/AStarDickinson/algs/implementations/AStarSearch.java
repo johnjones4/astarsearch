@@ -1,4 +1,4 @@
-package AStarDickinson.algs;
+package AStarDickinson.algs.implementations;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import AStarDickinson.algs.AlgorithmReport;
+import AStarDickinson.algs.PathFinder;
+import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.datastructs.MapNode;
 import AStarDickinson.datastructs.MapPath;
 import AStarDickinson.gui.ImagePanel;

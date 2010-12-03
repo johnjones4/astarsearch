@@ -2,6 +2,10 @@ package AStarDickinson.algs;
 
 import java.util.Map;
 import java.util.TreeMap;
+
+import AStarDickinson.algs.implementations.AStarSearch;
+import AStarDickinson.algs.implementations.BreadthFirstSearch;
+import AStarDickinson.algs.implementations.DepthFirstSearch;
 import AStarDickinson.datastructs.MapNode;
 
 public abstract class PathFinder implements Comparable<PathFinder> {
@@ -21,6 +25,9 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 		
 		AStarSearch astar = new AStarSearch();
 		algs.put(astar.toString(), astar);
+		
+		DepthFirstSearch dfs = new DepthFirstSearch();
+		algs.put(dfs.toString(), dfs);
 		
 		return algs;
 	}
