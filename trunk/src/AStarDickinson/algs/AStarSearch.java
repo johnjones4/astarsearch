@@ -20,6 +20,7 @@ public class AStarSearch extends PathFinder {
 		Collection<MapPath> exploredPaths = new LinkedList<MapPath>();
 		
 		delegate.setCandidatePathsCollection(exploredPaths);
+		delegate.setExploredNodes(visited);
 		
 		MapPath path = new MapPath(start,end);
 		path.addNode(start);
@@ -72,10 +73,5 @@ public class AStarSearch extends PathFinder {
 		private double hOfN(MapPath path) {
 			return path.getLastComponent().getDistanceToNode(destination);
 		}
-	}
-
-	@Override
-	public String getShortName() {
-		return "A*";
 	}
 }

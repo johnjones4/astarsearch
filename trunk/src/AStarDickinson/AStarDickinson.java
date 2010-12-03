@@ -2,9 +2,16 @@ package AStarDickinson;
 
 import java.awt.BorderLayout;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
@@ -19,6 +26,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import AStarDickinson.algs.AlgorithmReport;
+import AStarDickinson.algs.ConsolePathFinderDelegate;
+import AStarDickinson.algs.PathFinder;
 import AStarDickinson.datastructs.MapNode;
 import AStarDickinson.gui.ControlPanel;
 import AStarDickinson.gui.ImagePanel;
@@ -31,35 +41,70 @@ public class AStarDickinson {
 	public static final boolean NODE_MARKING = true;
 	
 	private static final String GUI_FLAG = "-g";
+	private static final String RANDOM_START_END_NODES = "-r";
 	
 	/**
 	 * @param args
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		Collection<MapNode> nodes = readNodes();
+		Map<String,MapNode> nodes = readNodes();
+		List<String> argsList = Arrays.asList(args);
 		
-		if (args.length == 1 && args[0].equals(GUI_FLAG)) {
+		if (argsList.size() == 1 && argsList.get(0).equals(GUI_FLAG)) {
+			Collection<MapNode> nodesCollection = new LinkedList<MapNode>(nodes.values());
+			
 			// Construct the GUI Windows
-			ImagePanel panel = new ImagePanel(DEFAULT_IMAGE,nodes,.65);
+			ImagePanel panel = new ImagePanel(DEFAULT_IMAGE,nodesCollection,.65);
 			JFrame frame = makeFrame(panel);
 			frame.addComponentListener(panel);
 			
 			// Construct the GUI Windows
 			ReportPanel reportPanel = new ReportPanel();
-			ControlPanel controlPanel = new ControlPanel(panel,reportPanel,nodes);
+			ControlPanel controlPanel = new ControlPanel(panel,reportPanel,nodesCollection);
 			JPanel panel1 = new JPanel(new BorderLayout());
 			panel1.getInsets().set(10, 10, 10, 10);
 			panel1.add(controlPanel,BorderLayout.PAGE_START);
 			panel1.add(reportPanel,BorderLayout.PAGE_END);
 			JFrame frame1 = makeFrame(panel1);
 		} else {
-			String startLocation = args[0];
-			String endLocation = args[1];
-			String algName = args[2];
+			MapNode start = null;
+			MapNode end = null;
+			String algName = null;
 			
+			if (argsList.get(0).equals(RANDOM_START_END_NODES)) {
+				Random rand = new Random(new Date().getTime());
+				List<MapNode> destinations = filterForDestinations(nodes.values());
+				start = destinations.get(rand.nextInt(destinations.size()));
+				end = destinations.get(rand.nextInt(destinations.size()));
+				algName = argsList.get(1);
+			} else {
+				String startLocation = argsList.get(0);
+				String endLocation = argsList.get(1);
+				algName = argsList.get(2);
+				start = nodes.get(startLocation);
+				end = nodes.get(endLocation);
+			}
 			
+			if (algName.equals("*")) {
+				for(PathFinder algorithm: PathFinder.getAvailableAlgorithms().values()) {
+					System.out.println("Using " + algorithm.toString());
+					algorithm.findPath(new ConsolePathFinderDelegate(), start, end);
+				}
+			} else {
+				PathFinder algorithm = PathFinder.getAvailableAlgorithms().get(algName);
+				System.out.println("Using " + algorithm.toString());
+				algorithm.findPath(new ConsolePathFinderDelegate(), start, end);
+			}
 		}
+	}
+	
+	private static List<MapNode> filterForDestinations(Collection<MapNode> nodes) {
+		ArrayList<MapNode> arraylist = new ArrayList<MapNode>();
+		for(MapNode node: nodes)
+			if (node.isDestination())
+				arraylist.add(node);
+		return arraylist;
 	}
 	
 	private static JFrame makeFrame(JPanel panel) {
@@ -71,7 +116,7 @@ public class AStarDickinson {
 		return frame;
 	}
 
-	private static Collection<MapNode> readNodes() throws Exception {
+	private static Map<String,MapNode> readNodes() throws Exception {
 		// Create a map of vertex names to vertex objects 
 		HashMap<String,MapNode> nodes = new HashMap<String,MapNode>();
 		
@@ -109,7 +154,7 @@ public class AStarDickinson {
 		}
 		
 		// Return the generate nodes
-		return new LinkedList<MapNode>(nodes.values());
+		return nodes;
 	}
 	
 	private static Collection<String> getFirstPassNames(NodeList nodeLst) throws DOMException, XPathExpressionException {

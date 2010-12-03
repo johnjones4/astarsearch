@@ -18,6 +18,7 @@ public class BreadthFirstSearch extends PathFinder {
 		Collection<MapPath> exploredPaths = new LinkedList<MapPath>();
 		
 		delegate.setCandidatePathsCollection(exploredPaths);
+		delegate.setExploredNodes(visited);
 		
 		MapPath path = new MapPath(start,end);
 		path.addNode(start);
@@ -46,10 +47,5 @@ public class BreadthFirstSearch extends PathFinder {
 	@Override
 	public String toString() {
 		return "Breadth First Search";
-	}
-
-	@Override
-	public String getShortName() {
-		return "BFS";
 	}
 }
