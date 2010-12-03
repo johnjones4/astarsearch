@@ -29,6 +29,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 	private Vector destNodes;
 	private ImagePanel imagePanel;
 	private ReportPanel reportPanel;
+	private JCheckBox drawImage;
 	private JCheckBox drawNodes;
 	private JCheckBox drawCandidatePaths;
 	private JCheckBox drawFinalPath;
@@ -47,6 +48,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		this.setDestinations(allnodes);
 		this.setPreferredSize(new Dimension(300,300));
 		
+		this.drawImage = new JCheckBox("Image", imagePanel.isDrawImage());
 		this.drawNodes = new JCheckBox("All Nodes", imagePanel.isDrawAllNodes());
 		this.drawCandidatePaths = new JCheckBox("Candidate Paths", imagePanel.isDrawAllNodes());
 		this.drawFinalPath = new JCheckBox("Final Path", imagePanel.isDrawAllNodes());
@@ -55,6 +57,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		this.algorithm = new JComboBox(this.getAlgsVector());
 		this.search = new JButton("Search");
 		
+		this.drawImage.addActionListener(this);
 		this.drawNodes.addActionListener(this);
 		this.drawCandidatePaths.addActionListener(this);
 		this.drawFinalPath.addActionListener(this);
@@ -64,6 +67,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		
 		JPanel checks = new JPanel();
 		checks.setLayout(new BoxLayout(checks,BoxLayout.Y_AXIS));
+		checks.add(this.drawImage);
 		checks.add(this.drawNodes);
 		checks.add(this.drawCandidatePaths);
 		checks.add(this.drawFinalPath);
@@ -115,7 +119,9 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.drawNodes) {
+		if (e.getSource() == this.drawImage) {
+			imagePanel.setDrawImage(this.drawImage.isSelected());
+		} else if (e.getSource() == this.drawNodes) {
 			imagePanel.setDrawAllNodes(this.drawNodes.isSelected());
 		} else if (e.getSource() == this.drawCandidatePaths) {
 			imagePanel.setDrawCandidatePaths(this.drawCandidatePaths.isSelected());
