@@ -35,6 +35,7 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 	private boolean drawAllNodes;
 	private boolean drawCandidatePaths;
 	private boolean drawFinalPath;
+	private boolean drawImage;
 	
 	public ImagePanel(String pathToImage,Collection<MapNode> nodes) throws IOException {
 		this(pathToImage,nodes,1);
@@ -47,6 +48,7 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 		this.drawAllNodes = true;
 		this.drawCandidatePaths = true;
 		this.drawFinalPath = true;
+		this.drawImage = true;
 		
 		this.setPreferredSize(new Dimension(this.getImageWidth(),this.getImageHeight()));
 		
@@ -71,6 +73,16 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 		return (int)((double)image.getHeight(null) * this.resizeFactor);
 	}
 	
+	
+	
+	public boolean isDrawImage() {
+		return drawImage;
+	}
+
+	public void setDrawImage(boolean drawImage) {
+		this.drawImage = drawImage;
+	}
+
 	/**
 	 * @param drawAllNodes the drawAllNodes to set
 	 */
@@ -129,7 +141,12 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(image, 0, 0, this.getImageWidth(), this.getImageHeight(), null);
+		if (this.drawImage)
+			g.drawImage(image, 0, 0, this.getImageWidth(), this.getImageHeight(), null);
+		else {
+			g.setColor(Color.black);
+			g.fillRect(0, 0, this.getImageWidth(), this.getImageHeight());
+		}
 		
 		if (this.isDrawAllNodes()) {
 			for(MapNode node: nodes) {
