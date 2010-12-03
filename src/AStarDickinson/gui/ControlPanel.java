@@ -108,7 +108,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 	}
 	
 	private Vector getAlgsVector() {
-		Vector algs = new Vector(PathFinder.getAvailableAlgorithms());
+		Vector algs = new Vector(PathFinder.getAvailableAlgorithms().values());
 		algs.insertElementAt("Select an Algorithm", 0);
 		return algs;
 	}
@@ -147,6 +147,12 @@ public class ControlPanel extends JPanel implements ActionListener {
 					public void setFinalPath(MapPath finalPath) {
 						imagePanel.setPath(finalPath);
 						imagePanel.repaint();
+					}
+
+					@Override
+					public void setExploredNodes(Collection<MapNode> nodes) {
+						// TODO Auto-generated method stub
+						
 					}
 					
 				},path.getStart(), path.getEnd());

@@ -1,27 +1,27 @@
 package AStarDickinson.algs;
 
-import java.util.Collection;
-import java.util.Queue;
-import java.util.TreeSet;
-
+import java.util.Map;
+import java.util.TreeMap;
 import AStarDickinson.datastructs.MapNode;
-import AStarDickinson.datastructs.MapPath;
-import AStarDickinson.gui.ImagePanel;
 
 public abstract class PathFinder implements Comparable<PathFinder> {
 	public abstract AlgorithmReport findPath(PathFinderDelegate delegate,MapNode start,MapNode end);
 	public abstract String toString();
-	public abstract String getShortName();
 	
 	@Override
 	public int compareTo(PathFinder o) {
 		return this.toString().compareTo(o.toString());
 	}
 	
-	public static Collection<PathFinder> getAvailableAlgorithms() {
-		Collection<PathFinder> algs = new TreeSet<PathFinder>();
-		algs.add(new BreadthFirstSearch());
-		algs.add(new AStarSearch());
+	public static Map<String,PathFinder> getAvailableAlgorithms() {
+		Map<String,PathFinder> algs = new TreeMap<String,PathFinder>();
+		
+		BreadthFirstSearch bfs = new BreadthFirstSearch();
+		algs.put(bfs.toString(),bfs);
+		
+		AStarSearch astar = new AStarSearch();
+		algs.put(astar.toString(), astar);
+		
 		return algs;
 	}
 }
