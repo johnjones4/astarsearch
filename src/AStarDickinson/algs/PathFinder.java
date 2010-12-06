@@ -9,7 +9,21 @@ import AStarDickinson.algs.implementations.DepthFirstSearch;
 import AStarDickinson.datastructs.MapNode;
 
 public abstract class PathFinder implements Comparable<PathFinder> {
+	/**
+	 * This method should contain the kernel of the path-finding algorithm.
+	 * 
+	 * @param delegate The PathFinderDelegate to report progress to
+	 * @param start The starting node
+	 * @param end The ending node
+	 * @return Returns an AlgorithmReport object that contains information about the solution found.
+	 */
 	public abstract AlgorithmReport findPath(PathFinderDelegate delegate,MapNode start,MapNode end);
+	
+	/**
+	 * This method should return the name of the algorithm
+	 * 
+	 * @return The name of the algorithm
+	 */
 	public abstract String toString();
 	
 	@Override
