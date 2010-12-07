@@ -70,6 +70,10 @@ public class MapPath {
 		}
 	}
 	
+	public boolean isCompletePath() {
+		return this.path.getFirst().equals(start) && this.path.getLast().equals(end);
+	}
+	
 	@Override
 	public String toString() {
 		boolean first = true;
