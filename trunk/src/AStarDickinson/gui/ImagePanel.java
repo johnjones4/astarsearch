@@ -240,8 +240,8 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 	
 	private MapNode selectNode(int x, int y) {
 		for (MapNode node: this.nodes) {
-			if (x >= node.getPoint().getx()-5 && x <= node.getPoint().getx()+5
-			 && y >= node.getPoint().gety()-5 && y <= node.getPoint().gety()+5)
+			if (x >= node.getPoint().getX()-5 && x <= node.getPoint().getX()+5
+			 && y >= node.getPoint().getY()-5 && y <= node.getPoint().getY()+5)
 				return node;
 		}
 		return null;

@@ -3,39 +3,73 @@ package AStarDickinson.datastructs;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * MapPoint is similar to the JDK Point class except it does not permit
+ * relocation of the coordinates and it provides XML serialization.
+ * 
+ * @author johnjones
+ * 
+ */
 public class MapPoint {
 	private final int y;
 	private final int x;
-	
+
+	/**
+	 * Construct a new MapPoint at the given location.
+	 * 
+	 * @param x
+	 *            The x coordinate
+	 * @param y
+	 *            The y coordinate
+	 */
 	public MapPoint(int x, int y) {
 		super();
 		this.y = y;
 		this.x = x;
 	}
 
-	public int gety() {
+	/**
+	 * Get the Y coordinate
+	 * 
+	 * @return the Y coordinate
+	 */
+	public int getY() {
 		return y;
 	}
 
-	public int getx() {
+	/**
+	 * Get the X coordinate
+	 * 
+	 * @return the X coordinate
+	 */
+	public int getX() {
 		return x;
 	}
-	
+
+	/**
+	 * Serialize the object into XML.
+	 * 
+	 * @param doc
+	 *            The document to which the XML will be appended to
+	 * @return An XML element
+	 */
 	public Element xml(Document doc) {
 		Element point = doc.createElement("point");
-		
+
 		Element x = doc.createElement("x");
 		x.appendChild(doc.createTextNode(String.valueOf(this.x)));
 		point.appendChild(x);
-		
+
 		Element y = doc.createElement("y");
 		y.appendChild(doc.createTextNode(String.valueOf(this.y)));
 		point.appendChild(y);
-		
+
 		return point;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -47,7 +81,9 @@ public class MapPoint {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
