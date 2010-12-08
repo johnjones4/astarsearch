@@ -1,4 +1,4 @@
-package AStarDickinson.datastructs;
+package AStarDickinson.datastructs.graph;
 
 import java.awt.Color;
 import java.awt.Graphics;

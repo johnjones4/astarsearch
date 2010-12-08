@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import AStarDickinson.algs.implementations.AStarSearch;
 import AStarDickinson.algs.implementations.BreadthFirstSearch;
 import AStarDickinson.algs.implementations.DepthFirstSearch;
-import AStarDickinson.datastructs.MapNode;
+import AStarDickinson.datastructs.graph.MapNode;
 
 public abstract class PathFinder implements Comparable<PathFinder> {
 	/**

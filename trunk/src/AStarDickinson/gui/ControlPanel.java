@@ -21,11 +21,13 @@ import AStarDickinson.XMLExporter;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
-import AStarDickinson.datastructs.MapNode;
-import AStarDickinson.datastructs.MapPath;
+import AStarDickinson.datastructs.graph.MapNode;
+import AStarDickinson.datastructs.graph.MapPath;
+import AStarDickinson.datastructs.tree.TreeNode;
 
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel implements ActionListener {
+	@SuppressWarnings("unchecked")
 	private Vector destNodes;
 	private ImagePanel imagePanel;
 	private ReportPanel reportPanel;
@@ -102,6 +104,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		return panel;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void setDestinations(Collection<MapNode> allnodes) {
 		TreeSet<MapNode> sorter = new TreeSet<MapNode>(); 
 		for (MapNode node: allnodes)
@@ -111,6 +114,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		destNodes.insertElementAt("Select a Location", 0);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private Vector getAlgsVector() {
 		Vector algs = new Vector(PathFinder.getAvailableAlgorithms().values());
 		algs.insertElementAt("Select an Algorithm", 0);
@@ -132,7 +136,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 			MapNode end = this.getSelectedNode(this.end);
 			path = new MapPath(start,end);
 			imagePanel.setPath(path);
-			imagePanel.setCandidatePaths(null);
+			imagePanel.setTree(null);
 		} else if (e.getSource() == this.search) {
 			PathFinder finder = this.getSelectedAlgorithm();
 			if (finder != null) {
@@ -143,23 +147,17 @@ public class ControlPanel extends JPanel implements ActionListener {
 					}
 
 					@Override
-					public void setCandidatePathsCollection(
-							Collection<MapPath> candidatePaths) {
-						imagePanel.setCandidatePaths(candidatePaths);
-						imagePanel.repaint();
-					}
-
-					@Override
 					public void setFinalPath(MapPath finalPath) {
 						imagePanel.setPath(finalPath);
 						imagePanel.repaint();
 					}
 
 					@Override
-					public void setExploredNodes(Collection<MapNode> nodes) {
-						// TODO Auto-generated method stub
-						
+					public void setRootNode(TreeNode node) {
+						imagePanel.setTree(node);
+						imagePanel.repaint();
 					}
+
 					
 				},path.getStart(), path.getEnd());
 				this.reportPanel.setAlgorithmReport(report);

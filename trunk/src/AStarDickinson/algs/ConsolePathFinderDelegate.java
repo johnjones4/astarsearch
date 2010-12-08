@@ -1,9 +1,7 @@
 package AStarDickinson.algs;
 
-import java.util.Collection;
-
-import AStarDickinson.datastructs.MapNode;
-import AStarDickinson.datastructs.MapPath;
+import AStarDickinson.datastructs.graph.MapPath;
+import AStarDickinson.datastructs.tree.TreeNode;
 
 /**
  * This implementation of PathFinderDelegate prints nothing while the algorithm
@@ -14,25 +12,21 @@ import AStarDickinson.datastructs.MapPath;
  * 
  */
 public class ConsolePathFinderDelegate implements PathFinderDelegate {
-	private Collection<MapNode> exploredNodes;
+	private TreeNode root;
 
 	@Override
 	public void pathsWereUpdated() {
 	}
 
 	@Override
-	public void setCandidatePathsCollection(Collection<MapPath> candidatePaths) {
-	}
-
-	@Override
 	public void setFinalPath(MapPath finalPath) {
-		System.out.println("Nodes Explored: " + this.exploredNodes.size());
+		System.out.println("Nodes Explored: " + this.root.getNumNodes());
 		System.out.println("Final path:\n\t\t" + finalPath.toString());
 	}
 
 	@Override
-	public void setExploredNodes(Collection<MapNode> nodes) {
-		this.exploredNodes = nodes;
+	public void setRootNode(TreeNode node) {
+		this.root = node;
 	}
 
 }

@@ -17,7 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import AStarDickinson.datastructs.MapNode;
+import AStarDickinson.datastructs.graph.MapNode;
 
 public class XMLExporter {
 	public String writeXML(Collection<MapNode> nodes) {
