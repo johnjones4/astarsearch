@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
@@ -25,11 +24,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.ConsolePathFinderDelegate;
 import AStarDickinson.algs.PathFinder;
-import AStarDickinson.datastructs.MapNode;
+import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.ControlPanel;
 import AStarDickinson.gui.ImagePanel;
 import AStarDickinson.gui.ReportPanel;
@@ -66,7 +63,7 @@ public class AStarDickinson {
 			panel1.getInsets().set(10, 10, 10, 10);
 			panel1.add(controlPanel,BorderLayout.PAGE_START);
 			panel1.add(reportPanel,BorderLayout.PAGE_END);
-			JFrame frame1 = makeFrame(panel1);
+			makeFrame(panel1);
 		} else {
 			MapNode start = null;
 			MapNode end = null;

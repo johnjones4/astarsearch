@@ -6,21 +6,18 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.LinkedList;
-
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import AStarDickinson.datastructs.MapNode;
-import AStarDickinson.datastructs.MapPath;
+import AStarDickinson.datastructs.graph.MapNode;
+import AStarDickinson.datastructs.graph.MapPath;
+import AStarDickinson.datastructs.tree.TreeNode;
 
 @SuppressWarnings("serial")
 public class ImagePanel extends JPanel implements ComponentListener,MouseListener {
@@ -28,7 +25,7 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 	private Image image;
 	private Collection<MapNode> nodes;
 	private MapPath path;
-	private Collection<MapPath> candidatePaths;
+	private TreeNode tree;
 	private double resizeFactor;
 	private MapNode selectedNode;
 	
@@ -128,15 +125,15 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 	/**
 	 * @return the candidatePaths
 	 */
-	public Collection<MapPath> getCandidatePaths() {
-		return candidatePaths;
+	public TreeNode getTree() {
+		return tree;
 	}
 
 	/**
 	 * @param candidatePaths the candidatePaths to set
 	 */
-	public void setCandidatePaths(Collection<MapPath> candidatePaths) {
-		this.candidatePaths = candidatePaths;
+	public void setTree(TreeNode tree) {
+		this.tree = tree;
 	}
 
 	@Override
@@ -158,10 +155,8 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 			}
 		}
 		
-		if (this.isDrawCandidatePaths() && candidatePaths != null) {
-			for(MapPath path: this.candidatePaths) {
-				this.drawPath(path, Color.white, g);
-			}
+		if (this.isDrawCandidatePaths() && tree != null) {
+			tree.drawMapNodes(g, Color.white, this.resizeFactor);
 		}
 		
 		if (this.isDrawFinalPath() && path != null) {

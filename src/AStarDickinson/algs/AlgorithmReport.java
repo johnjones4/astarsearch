@@ -1,9 +1,7 @@
 package AStarDickinson.algs;
 
-import java.util.Collection;
-
-import AStarDickinson.datastructs.MapNode;
-import AStarDickinson.datastructs.MapPath;
+import AStarDickinson.datastructs.graph.MapPath;
+import AStarDickinson.datastructs.tree.TreeNode;
 
 /**
  * This class encapsulates data produced by the execution of a PathFinder
@@ -14,8 +12,7 @@ import AStarDickinson.datastructs.MapPath;
  */
 public class AlgorithmReport {
 	private final MapPath finalPath;
-	private final Collection<MapPath> consideredPaths;
-	private final Collection<MapNode> considertedNodes;
+	private final TreeNode root;
 
 	/**
 	 * Construct a new AlgorithmReport using the parameters. These values are
@@ -23,19 +20,15 @@ public class AlgorithmReport {
 	 * 
 	 * @param finalPath
 	 *            The path found by the algorithm
-	 * @param consideredPaths
-	 *            The paths considered as possible solutions
-	 * @param considertedNodes
-	 *            The nodes considered
+	 * @param root
+	 *            The tree of explored nodes
 	 */
-	public AlgorithmReport(MapPath finalPath,
-			Collection<MapPath> consideredPaths,
-			Collection<MapNode> considertedNodes) {
+	public AlgorithmReport(MapPath finalPath, TreeNode root) {
 		super();
 		this.finalPath = finalPath;
-		this.consideredPaths = consideredPaths;
-		this.considertedNodes = considertedNodes;
+		this.root = root;
 	}
+
 
 	/**
 	 * @return the finalPath
@@ -45,24 +38,17 @@ public class AlgorithmReport {
 	}
 
 	/**
-	 * @return the consideredPaths
+	 * @return the root
 	 */
-	public Collection<MapPath> getConsideredPaths() {
-		return consideredPaths;
-	}
-
-	/**
-	 * @return the considertedNodes
-	 */
-	public Collection<MapNode> getConsidertedNodes() {
-		return considertedNodes;
+	public TreeNode getRoot() {
+		return root;
 	}
 
 	/**
 	 * @return the number of nodes considered
 	 */
 	public int getNumNodesConsidered() {
-		return considertedNodes.size();
+		return root.getNumNodes();
 	}
 
 	/**

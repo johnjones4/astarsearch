@@ -1,14 +1,26 @@
-package AStarDickinson.datastructs;
+package AStarDickinson.datastructs.graph;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Map path defines a path from some start node to some end node.  A path is a list of two or more MapNodes.
+ * 
+ * @author johnjones
+ *
+ */
 public class MapPath {
 	private LinkedList<MapNode> path;
 	private MapNode start;
 	private MapNode end;
 
+	/**
+	 * Create a new path with start and end points
+	 *  
+	 * @param start The starting point of the path
+	 * @param end The ending point of the path
+	 */
 	public MapPath(MapNode start,MapNode end) {
 		super();
 		this.path = new LinkedList<MapNode>();
@@ -16,34 +28,51 @@ public class MapPath {
 		this.end = end;
 	}
 
+	/**
+	 * Get a list of the MapNodes in the path such that the first list item in the list is the start node.
+	 * @return A List of MapNodes
+	 */
 	public List<MapNode> getPath() {
 		return path;
 	}
 	
+	/**
+	 * Add a node to end of the MapPath.
+	 * @param node
+	 */
 	public void addNode(MapNode node) {
 		this.path.add(node);
 	}
 
 	/**
-	 * @return the start
+	 * @return the start node
 	 */
 	public MapNode getStart() {
 		return start;
 	}
 
 	/**
-	 * @return the end
+	 * @return the end node
 	 */
 	public MapNode getEnd() {
 		return end;
 	}
 	
+	/**
+	 * Create a deep clone of the path.
+	 * @return A new path that has the same nodes as this path
+	 */
 	public MapPath clonePath() {
 		MapPath path = new MapPath(start,end);
 		path.path = new LinkedList<MapNode>(this.path);
 		return path;
 	}
 	
+	/**
+	 * Create a deep clone of the path with a new 
+	 * @param node
+	 * @return
+	 */
 	public MapPath cloneWithAddedNode(MapNode node) {
 		MapPath path = this.clonePath();
 		path.addNode(node);

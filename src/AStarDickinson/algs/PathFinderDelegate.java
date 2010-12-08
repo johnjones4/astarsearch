@@ -1,9 +1,7 @@
 package AStarDickinson.algs;
 
-import java.util.Collection;
-
-import AStarDickinson.datastructs.MapNode;
-import AStarDickinson.datastructs.MapPath;
+import AStarDickinson.datastructs.graph.MapPath;
+import AStarDickinson.datastructs.tree.TreeNode;
 
 /**
  * This interface is used to give subclasses of the PathFinder class a way to
@@ -14,24 +12,10 @@ import AStarDickinson.datastructs.MapPath;
  */
 public interface PathFinderDelegate {
 	/**
-	 * Send a reference to the collection storing all of the candidate pats. A
-	 * candidate path is a path from the starting node to any other node that
-	 * was conisedered as a possible solution path.
-	 * 
-	 * @param candidatePaths
-	 *            The candidate paths
+	 * Set the root of the tree.
+	 * @param node
 	 */
-	public void setCandidatePathsCollection(Collection<MapPath> candidatePaths);
-
-	/**
-	 * Send a reference to the collection storing all of the explored nodes. An
-	 * explored node is a node that the algorithm conisidered as part of the
-	 * solution.
-	 * 
-	 * @param nodes
-	 *            The explored nodes
-	 */
-	public void setExploredNodes(Collection<MapNode> nodes);
+	public void setRootNode(TreeNode node);
 
 	/**
 	 * Set the final path found from the start to the end node
