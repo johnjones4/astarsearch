@@ -35,7 +35,7 @@ public class AStarDickinson {
 	public static final String DEFAULT_IMAGE = "dickinson1.jpg";
 	public static final String DEFAULT_DATA = "mapData1.xml";
 	public static final boolean ASSERT_UNDIRECTED = true;
-	public static final boolean NODE_MARKING = true;
+	public static final boolean NODE_MARKING = false;
 	
 	private static final String GUI_FLAG = "-g";
 	private static final String RANDOM_START_END_NODES = "-r";

@@ -1,5 +1,7 @@
 package AStarDickinson.algs;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -7,6 +9,8 @@ import AStarDickinson.algs.implementations.AStarSearch;
 import AStarDickinson.algs.implementations.BreadthFirstSearch;
 import AStarDickinson.algs.implementations.DepthFirstSearch;
 import AStarDickinson.datastructs.graph.MapNode;
+import AStarDickinson.datastructs.graph.MapPath;
+import AStarDickinson.datastructs.tree.TreeNode;
 
 public abstract class PathFinder implements Comparable<PathFinder> {
 	/**
@@ -46,6 +50,36 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	public String toString() {
 		return this.getName();
 	}
+	
+	protected AlgorithmReport buildTree(CollectionWrapper frontier, PathFinderDelegate delegate, MapNode start, MapNode end) {
+		Collection<TreeNode> exploredTreeNodes = new LinkedList<TreeNode>();
+		
+		TreeNode root = new TreeNode(null,start);
+		frontier.put(root);
+		delegate.setRootNode(root);
+
+		while (!frontier.isEmpty()) {
+			TreeNode node = frontier.get();
+			exploredTreeNodes.add(node);
+			for (MapNode child : node.getValue().getEdges()) {
+				TreeNode childNode = new TreeNode(node,child);
+				if (child.equals(end)) {
+					node.addChild(childNode);
+					MapPath finalPath = new MapPath(start, end);
+					childNode.assembleInversePath(finalPath);
+					delegate.setFinalPath(finalPath);
+					return new AlgorithmReport(finalPath, root);
+				} else if (!exploredTreeNodes.contains(childNode)) {
+					node.addChild(childNode);
+					exploredTreeNodes.add(childNode);
+					frontier.put(childNode);
+				}
+				delegate.pathsWereUpdated();
+			}
+		}
+
+		return null;
+	}
 
 	/**
 	 * This static method returns a Map of name->object of available subclasses
@@ -66,5 +100,11 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 		algs.put(dfs.toString(), dfs);
 
 		return algs;
+	}
+	
+	protected interface CollectionWrapper {
+		public void put(TreeNode node);
+		public TreeNode get();
+		public boolean isEmpty();
 	}
 }
