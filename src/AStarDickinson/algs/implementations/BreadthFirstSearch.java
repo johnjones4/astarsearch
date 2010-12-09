@@ -1,13 +1,11 @@
 package AStarDickinson.algs.implementations;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.datastructs.graph.MapNode;
-import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
 
 /**
@@ -22,34 +20,25 @@ public class BreadthFirstSearch extends PathFinder {
 	@Override
 	public AlgorithmReport findPath(PathFinderDelegate delegate, MapNode start,
 			MapNode end) {
-		Queue<TreeNode> frontier = new LinkedList<TreeNode>();
-		Collection<TreeNode> exploredTreeNodes = new LinkedList<TreeNode>();
+		return super.buildTree(new CollectionWrapper() {
+			Queue<TreeNode> frontier = new LinkedList<TreeNode>();
 
-		TreeNode root = new TreeNode(null,start);
-		frontier.add(root);
-		delegate.setRootNode(root);
-
-		while (frontier.size() > 0) {
-			TreeNode node = frontier.poll();
-			exploredTreeNodes.add(node);
-			for (MapNode child : node.getValue().getEdges()) {
-				TreeNode childNode = new TreeNode(node,child);
-				if (child.equals(end)) {
-					node.addChild(childNode);
-					MapPath finalPath = new MapPath(start, end);
-					childNode.assembleInversePath(finalPath);
-					delegate.setFinalPath(finalPath);
-					return new AlgorithmReport(finalPath, root);
-				} else if (!exploredTreeNodes.contains(childNode)) {
-					node.addChild(childNode);
-					exploredTreeNodes.add(childNode);
-					frontier.add(childNode);
-				}
-				delegate.pathsWereUpdated();
+			@Override
+			public TreeNode get() {
+				return frontier.poll();
 			}
-		}
 
-		return null;
+			@Override
+			public boolean isEmpty() {
+				return frontier.isEmpty();
+			}
+
+			@Override
+			public void put(TreeNode node) {
+				frontier.add(node);
+			}
+			
+		}, delegate, start, end);
 	}
 
 	@Override
