@@ -25,8 +25,11 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	 * @return Returns an AlgorithmReport object that contains information about
 	 *         the solution found.
 	 */
-	public abstract AlgorithmReport findPath(PathFinderDelegate delegate,
+	protected abstract AlgorithmReport findPath(PathFinderDelegate delegate,
 			MapNode start, MapNode end);
+	
+	public run(PathFinderDelegate delegate,
+			MapNode start, MapNode end)
 
 	/**
 	 * This method should return the name of the algorithm
