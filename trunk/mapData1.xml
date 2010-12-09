@@ -35,14 +35,11 @@
         <edges>
             <edge>Malcom North Intersection</edge>
             <edge>Malcom South Intersection</edge>
-            <edge>Malcom South Intersection</edge>
-            <edge>Malcom South Intersection</edge>
-            <edge>Malcom South Intersection</edge>
             <edge>Malcom Front Door</edge>
             <edge>50 Mooreland Intersection</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>429 W. Louther St</name>
         <point>
             <x>443</x>
@@ -151,7 +148,7 @@
             <edge>Weiss Back Intersection</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>50 Mooreland Parking Lot Entrance</name>
         <point>
             <x>344</x>
@@ -404,7 +401,7 @@
             <edge>Cherry and Louther NW</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>425 W. Louther St</name>
         <point>
             <x>461</x>
@@ -582,14 +579,13 @@
             <edge>Library Side Door</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Arts Haus Door</name>
         <point>
             <x>461</x>
             <y>705</y>
         </point>
         <edges>
-            <edge>50 Mooreland Intersection</edge>
             <edge>Arts House Intersection</edge>
         </edges>
     </node>
@@ -1185,7 +1181,6 @@
             <edge>Malcom South Intersection</edge>
             <edge>50 Mooreland</edge>
             <edge>Arts House Intersection</edge>
-            <edge>Arts Haus Door</edge>
             <edge>Morgan Field Side Entrance</edge>
         </edges>
     </node>
@@ -1304,7 +1299,7 @@
             <edge>Denny Apartments</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>The Depot</name>
         <point>
             <x>212</x>
@@ -1355,7 +1350,7 @@
             <edge>Morgan Driveway North</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Health Center</name>
         <point>
             <x>150</x>
@@ -1589,7 +1584,7 @@
             <edge>High and College NW Corner</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Kaufman Hall</name>
         <point>
             <x>379</x>
@@ -1611,7 +1606,7 @@
             <edge>Morgan Driveway South</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Goodyear</name>
         <point>
             <x>6</x>
@@ -1807,7 +1802,7 @@
             <edge>Durden's House Side Door Intersection</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Morgan Back Door</name>
         <point>
             <x>584</x>
@@ -2116,7 +2111,7 @@
             <edge>Parking Lot Intersection</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Kline Center</name>
         <point>
             <x>129</x>
@@ -2292,7 +2287,7 @@
             <edge>ATS Small Lot Entrance</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Miseno's</name>
         <point>
             <x>89</x>
@@ -2457,7 +2452,7 @@
             <edge>Weiss Crosswalk</edge>
         </edges>
     </node>
-    <node destination="false">
+    <node destination="true">
         <name>Denny Apartments</name>
         <point>
             <x>1281</x>

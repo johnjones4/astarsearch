@@ -63,7 +63,8 @@ public class AStarDickinson {
 			panel1.getInsets().set(10, 10, 10, 10);
 			panel1.add(controlPanel,BorderLayout.PAGE_START);
 			panel1.add(reportPanel,BorderLayout.PAGE_END);
-			makeFrame(panel1);
+			JFrame frame1 = makeFrame(panel1);
+			frame1.setResizable(false);
 		} else {
 			MapNode start = null;
 			MapNode end = null;
@@ -96,6 +97,11 @@ public class AStarDickinson {
 		}
 	}
 	
+	/**
+	 * Filter a list of map nodes for only "destination" nodes
+	 * @param nodes A list of all nodes.  This collection is not modified
+	 * @return A new list of only destination nodes
+	 */
 	private static List<MapNode> filterForDestinations(Collection<MapNode> nodes) {
 		ArrayList<MapNode> arraylist = new ArrayList<MapNode>();
 		for(MapNode node: nodes)
@@ -104,6 +110,11 @@ public class AStarDickinson {
 		return arraylist;
 	}
 	
+	/**
+	 * Make a JFrame and perform standard setup functions
+	 * @param panel A panel to add directly to the JFrame's content pane
+	 * @return A new JFrame
+	 */
 	private static JFrame makeFrame(JPanel panel) {
 		JFrame frame = new JFrame("A* Search");
 		frame.getContentPane().add(panel);
@@ -113,6 +124,11 @@ public class AStarDickinson {
 		return frame;
 	}
 
+	/**
+	 * Read the XML document of map nodes
+	 * @return A map of node name -> node object
+	 * @throws Exception
+	 */
 	private static Map<String,MapNode> readNodes() throws Exception {
 		// Create a map of vertex names to vertex objects 
 		HashMap<String,MapNode> nodes = new HashMap<String,MapNode>();
@@ -154,6 +170,13 @@ public class AStarDickinson {
 		return nodes;
 	}
 	
+	/**
+	 * Build a list of strings of names of nodes.  This is used for error checking
+	 * @param nodeLst A list of xml nodes
+	 * @return A collection of strings
+	 * @throws DOMException
+	 * @throws XPathExpressionException
+	 */
 	private static Collection<String> getFirstPassNames(NodeList nodeLst) throws DOMException, XPathExpressionException {
 		// Setup the needed objects
 		XPath xpath = XPathFactory.newInstance().newXPath();
@@ -173,6 +196,13 @@ public class AStarDickinson {
 		return names;
 	}
 	
+	/**
+	 * Generate a map node from the given XML node
+	 * @param node An XML node containing map node data
+	 * @param names A list of names of all of the map nodes (read and unread)  This is used for error checking
+	 * @return A new MapNode
+	 * @throws Exception
+	 */
 	private static MapNode generateMapNode(Node node,Collection<String> names) throws Exception {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		String name = ((NodeList)xpath.compile(".//name//text()").evaluate(node.getChildNodes() ,XPathConstants.NODESET)).item(0).getNodeValue();
