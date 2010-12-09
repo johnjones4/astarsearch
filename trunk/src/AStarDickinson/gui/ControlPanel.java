@@ -21,6 +21,7 @@ import AStarDickinson.XMLExporter;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
+import AStarDickinson.algs.implementations.StaticALTSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
@@ -140,6 +141,8 @@ public class ControlPanel extends JPanel implements ActionListener {
 		} else if (e.getSource() == this.search) {
 			PathFinder finder = this.getSelectedAlgorithm();
 			if (finder != null) {
+				if (finder instanceof StaticALTSearch)
+					((StaticALTSearch)finder).precompute()
 				AlgorithmReport report = finder.findPath(new PathFinderDelegate() {
 					@Override
 					public void pathsWereUpdated() {
