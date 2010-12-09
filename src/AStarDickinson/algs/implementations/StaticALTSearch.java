@@ -6,15 +6,16 @@ import java.util.List;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
+import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
 
 public abstract class StaticALTSearch extends PathFinder {
-	private Collection<MapNode> landmarks;
+	private Collection<Landmark> landmarks;
 
 	@Override
 	public AlgorithmReport findPath(PathFinderDelegate delegate, MapNode start,
 			MapNode end) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -22,5 +23,5 @@ public abstract class StaticALTSearch extends PathFinder {
 		this.landmarks = this.precomputeImpl(graph);
 	}
 
-	protected abstract Collection<MapNode> precomputeImpl(List<MapNode> graph);
+	protected abstract Collection<Landmark> precomputeImpl(List<MapNode> graph);
 }
