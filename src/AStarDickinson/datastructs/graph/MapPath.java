@@ -109,7 +109,7 @@ public class MapPath {
 		StringBuilder builder = new StringBuilder();
 		for (MapNode node: this.path) {
 			if (!first)
-				builder.append(", ");
+				builder.append("; ");
 			first = false;
 			builder.append(node.toString());
 		}

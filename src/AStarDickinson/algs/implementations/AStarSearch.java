@@ -54,7 +54,7 @@ public class AStarSearch extends PathFinder {
 	 * @author johnjones
 	 * 
 	 */
-	private class AStarComparator implements Comparator<TreeNode> {
+	protected class AStarComparator implements Comparator<TreeNode> {
 		private MapNode start;
 		private MapNode end;
 
@@ -70,29 +70,23 @@ public class AStarSearch extends PathFinder {
 
 		@Override
 		public int compare(TreeNode o1, TreeNode o2) {
-			Double fOfN1 = this.gOfN(o1) + this.hOfN(o1);
-			Double fOfN2 = this.gOfN(o2) + this.hOfN(o2);
+			Double fOfN1 = f(o1,start,end);
+			Double fOfN2 = f(o2,start,end);
 			return fOfN1.compareTo(fOfN2);
 		}
-
-		/**
-		 * g(n) is the total distance traversed.
-		 * @param path
-		 * @return
-		 */
-		private double gOfN(TreeNode node) {
-			MapPath path = new MapPath(start,end);
-			node.assembleInversePath(path);
-			return path.getPathDistance();
-		}
-
-		/**
-		 * h(n) is the straight-distance from our current location to the end node.
-		 * @param path
-		 * @return
-		 */
-		private double hOfN(TreeNode node) {
-			return node.getValue().getDistanceToNode(end);
-		}
+	}
+	
+	protected static double f(TreeNode node,MapNode start, MapNode end) {
+		return g(node,start,end) + h(node,end);
+	}
+	
+	protected static double g(TreeNode node,MapNode start, MapNode end) {
+		MapPath path = new MapPath(start,end);
+		node.assemblePath(path);
+		return path.getPathDistance();
+	}
+	
+	protected static double h(TreeNode node, MapNode end) {
+		return node.getValue().getDistanceToNode(end);
 	}
 }

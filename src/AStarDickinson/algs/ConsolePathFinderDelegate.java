@@ -1,5 +1,8 @@
 package AStarDickinson.algs;
 
+import java.util.Collection;
+
+import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
 
@@ -12,7 +15,7 @@ import AStarDickinson.datastructs.tree.TreeNode;
  * 
  */
 public class ConsolePathFinderDelegate implements PathFinderDelegate {
-	private TreeNode root;
+	private TreeNode[] roots;
 
 	@Override
 	public void pathsWereUpdated() {
@@ -20,13 +23,16 @@ public class ConsolePathFinderDelegate implements PathFinderDelegate {
 
 	@Override
 	public void setFinalPath(MapPath finalPath) {
-		System.out.println("Nodes Explored: " + this.root.getNumNodes());
 		System.out.println("Final path:\n\t\t" + finalPath.toString());
 	}
 
 	@Override
-	public void setRootNode(TreeNode node) {
-		this.root = node;
+	public void setRootNodes(TreeNode[] nodes) {
+		this.roots = nodes;
 	}
 
+	@Override
+	public void setLandmarks(Collection<Landmark> landmarks) {
+		System.out.println(landmarks.size() + " landmarks chosen.");
+	}
 }

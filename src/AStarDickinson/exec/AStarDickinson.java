@@ -1,4 +1,4 @@
-package AStarDickinson;
+package AStarDickinson.exec;
 
 import java.awt.BorderLayout;
 import java.io.File;
@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Vector;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
@@ -28,7 +30,7 @@ import AStarDickinson.algs.ConsolePathFinderDelegate;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.ControlPanel;
-import AStarDickinson.gui.ImagePanel;
+import AStarDickinson.gui.GraphPanel;
 import AStarDickinson.gui.ReportPanel;
 
 public class AStarDickinson {
@@ -37,64 +39,27 @@ public class AStarDickinson {
 	public static final boolean ASSERT_UNDIRECTED = true;
 	public static final boolean NODE_MARKING = false;
 	
-	private static final String GUI_FLAG = "-g";
-	private static final String RANDOM_START_END_NODES = "-r";
-	
 	/**
 	 * @param args
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		Map<String,MapNode> nodes = readNodes();
-		List<String> argsList = Arrays.asList(args);
+		List<MapNode> graph = new Vector<MapNode>(readNodes().values());
+
+		// Construct the GUI Windows
+		GraphPanel panel = new GraphPanel(new GraphRenderer(DEFAULT_IMAGE,graph,.65));
+		JFrame frame = makeFrame(panel);
+		frame.addComponentListener(panel);
 		
-		if (argsList.size() == 1 && argsList.get(0).equals(GUI_FLAG)) {
-			Collection<MapNode> nodesCollection = new LinkedList<MapNode>(nodes.values());
-			
-			// Construct the GUI Windows
-			ImagePanel panel = new ImagePanel(DEFAULT_IMAGE,nodesCollection,.65);
-			JFrame frame = makeFrame(panel);
-			frame.addComponentListener(panel);
-			
-			// Construct the GUI Windows
-			ReportPanel reportPanel = new ReportPanel();
-			ControlPanel controlPanel = new ControlPanel(panel,reportPanel,nodesCollection);
-			JPanel panel1 = new JPanel(new BorderLayout());
-			panel1.getInsets().set(10, 10, 10, 10);
-			panel1.add(controlPanel,BorderLayout.PAGE_START);
-			panel1.add(reportPanel,BorderLayout.PAGE_END);
-			JFrame frame1 = makeFrame(panel1);
-			frame1.setResizable(false);
-		} else {
-			MapNode start = null;
-			MapNode end = null;
-			String algName = null;
-			
-			if (argsList.get(0).equals(RANDOM_START_END_NODES)) {
-				Random rand = new Random(new Date().getTime());
-				List<MapNode> destinations = filterForDestinations(nodes.values());
-				start = destinations.get(rand.nextInt(destinations.size()));
-				end = destinations.get(rand.nextInt(destinations.size()));
-				algName = argsList.get(1);
-			} else {
-				String startLocation = argsList.get(0);
-				String endLocation = argsList.get(1);
-				algName = argsList.get(2);
-				start = nodes.get(startLocation);
-				end = nodes.get(endLocation);
-			}
-			
-			if (algName.equals("*")) {
-				for(PathFinder algorithm: PathFinder.getAvailableAlgorithms().values()) {
-					System.out.println("Using " + algorithm.toString());
-					algorithm.findPath(new ConsolePathFinderDelegate(), start, end);
-				}
-			} else {
-				PathFinder algorithm = PathFinder.getAvailableAlgorithms().get(algName);
-				System.out.println("Using " + algorithm.toString());
-				algorithm.findPath(new ConsolePathFinderDelegate(), start, end);
-			}
-		}
+		// Construct the GUI Windows
+		ReportPanel reportPanel = new ReportPanel();
+		ControlPanel controlPanel = new ControlPanel(panel,reportPanel,graph);
+		JPanel panel1 = new JPanel(new BorderLayout());
+		panel1.getInsets().set(10, 10, 10, 10);
+		panel1.add(controlPanel,BorderLayout.PAGE_START);
+		panel1.add(reportPanel,BorderLayout.PAGE_END);
+		JFrame frame1 = makeFrame(panel1);
+		frame1.setResizable(false);
 	}
 	
 	/**
