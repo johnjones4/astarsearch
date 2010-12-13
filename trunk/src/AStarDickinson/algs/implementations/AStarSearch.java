@@ -77,13 +77,11 @@ public class AStarSearch extends PathFinder {
 	}
 	
 	protected static double f(TreeNode node,MapNode start, MapNode end) {
-		return g(node,start,end) + h(node,end);
+		return g(node) + h(node,end);
 	}
 	
-	protected static double g(TreeNode node,MapNode start, MapNode end) {
-		MapPath path = new MapPath(start,end);
-		node.assemblePath(path);
-		return path.getPathDistance();
+	protected static double g(TreeNode node) {
+		return node.getCost();
 	}
 	
 	protected static double h(TreeNode node, MapNode end) {
