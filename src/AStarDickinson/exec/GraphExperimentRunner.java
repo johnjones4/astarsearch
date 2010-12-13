@@ -18,13 +18,18 @@ import AStarDickinson.gui.GraphPanel;
 public abstract class GraphExperimentRunner {
 	public static final String FORMAT = "PNG";
 	
+	private int width;
+	private int height;
+	
+	private String outputFile;
+	
 	private int output;
 	private static final int SCREEN_OUTPUT = 0;
 	private static final int IMAGE_OUTPUT = 1;
 	
 	
 	
-	private void runAlgorithm(PathFinder algorithm,MapNode startNode,MapNode endNode,List<MapNode> graph,String[] args) throws IOException {
+	private void runAlgorithm(PathFinder algorithm,MapNode startNode,MapNode endNode,List<MapNode> graph) throws IOException {
 		System.out.println(algorithm.getName());
 		AlgorithmReport report = algorithm.findPath(new ConsolePathFinderDelegate(), startNode, endNode);
 		GraphRenderer panel = render(report,graph);
@@ -35,7 +40,7 @@ public abstract class GraphExperimentRunner {
 	}
 	
 	private GraphRenderer render(AlgorithmReport report,List<MapNode> graph) throws IOException {
-		GraphRenderer renderer = new GraphRenderer(MAX_X,MAX_Y,graph);
+		GraphRenderer renderer = new GraphRenderer(width,height,graph);
 		renderer.setTree(report.getRoots());
 		renderer.setPath(report.getFinalPath());
 		return renderer;
@@ -56,6 +61,6 @@ public abstract class GraphExperimentRunner {
 	}
 	
 	private File getFile(AlgorithmReport report) {
-		return new File(RENDER_FILE + report.getAlgName() + " " + new Date().getTime() + "." + FORMAT);
+		return new File(outputFile + report.getAlgName() + " " + new Date().getTime() + "." + FORMAT);
 	}
 }

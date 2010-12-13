@@ -20,7 +20,7 @@ import AStarDickinson.algs.implementations.BidirectionalSymmetricAStarSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.GraphPanel;
 
-public class RandomGraphRunner {
+public class RandomGraphRunner extends GraphExperimentRunner {
 	public static final int GRAPH_SIZE = 300;
 	public static final int MAX_X = 500;
 	public static final int MAX_Y = 500;
@@ -31,7 +31,7 @@ public class RandomGraphRunner {
 	public static final String SCREEN_FLAG = "-s";
 	public static final String IMAGE_FLAG = "-i";
 	
-	public static void main(String[] args) throws IOException {
+	public void run() {
 		if (args.length == 2) {	
 			if (args[1].equals(IMAGE_FLAG))
 				System.setProperty("java.awt.headless", "true");
