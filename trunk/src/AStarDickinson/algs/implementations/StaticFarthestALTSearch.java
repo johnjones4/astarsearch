@@ -8,8 +8,12 @@ import AStarDickinson.datastructs.graph.MapNode;
 
 public class StaticFarthestALTSearch extends StaticALTSearch {
 
+	public StaticFarthestALTSearch(List<MapNode> graph) {
+		super(graph);
+	}
+
 	@Override
-	protected Collection<Landmark> precomputeImpl(List<MapNode> graph) {
+	protected List<Landmark> precomputeImpl(List<MapNode> graph, int nLandmarks) {
 		// TODO Auto-generated method stub
 		return null;
 	}

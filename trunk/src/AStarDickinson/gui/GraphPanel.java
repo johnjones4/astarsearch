@@ -15,62 +15,37 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
+import AStarDickinson.exec.AStarDickinson;
+import AStarDickinson.exec.GraphRenderer;
 
 @SuppressWarnings("serial")
-public class ImagePanel extends JPanel implements ComponentListener,MouseListener {
-	
-	private Image image;
-	private Collection<MapNode> nodes;
-	private MapPath path;
-	private TreeNode tree;
-	private double resizeFactor;
-	private MapNode selectedNode;
-	
+public class GraphPanel extends JPanel implements ComponentListener,MouseListener {
+	private GraphRenderer renderer;
 	private boolean drawAllNodes;
 	private boolean drawCandidatePaths;
 	private boolean drawFinalPath;
 	private boolean drawImage;
+	private boolean drawLandmarks;
+	private MapNode selectedNode;
 	
-	public ImagePanel(String pathToImage,Collection<MapNode> nodes) throws IOException {
-		this(pathToImage,nodes,1);
-	}
-	
-	public ImagePanel(String pathToImage,Collection<MapNode> nodes, double resizeFactor) throws IOException {
-		this.image = ImageIO.read(new File(pathToImage));
-		this.nodes = nodes;
-		this.resizeFactor = resizeFactor;
+	public GraphPanel(GraphRenderer renderer)
+	{
+		this.renderer = renderer;
 		this.drawAllNodes = true;
 		this.drawCandidatePaths = true;
 		this.drawFinalPath = true;
 		this.drawImage = true;
+		this.drawLandmarks = true;
 		
-		this.setPreferredSize(new Dimension(this.getImageWidth(),this.getImageHeight()));
-		
-		if (AStarDickinson.AStarDickinson.NODE_MARKING) {
+		this.setPreferredSize(new Dimension(renderer.getGraphWidth(),renderer.getGraphHeight()));
+		if (AStarDickinson.NODE_MARKING) {
 			this.addMouseListener(this);
 		}
 	}
-
-	public MapPath getPath() {
-		return path;
-	}
-
-	public void setPath(MapPath path) {
-		this.path = path;
-	}
-	
-	private int getImageWidth() {
-		return (int)((double)image.getWidth(null) * this.resizeFactor);
-	}
-	
-	private int getImageHeight() {
-		return (int)((double)image.getHeight(null) * this.resizeFactor);
-	}
-	
-	
 	
 	public boolean isDrawImage() {
 		return drawImage;
@@ -121,68 +96,39 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 	public void setDrawFinalPath(boolean drawFinalPath) {
 		this.drawFinalPath = drawFinalPath;
 	}
-
+	
 	/**
-	 * @return the candidatePaths
+	 * @return the drawLandmarks
 	 */
-	public TreeNode getTree() {
-		return tree;
+	public boolean isDrawLandmarks() {
+		return drawLandmarks;
 	}
 
 	/**
-	 * @param candidatePaths the candidatePaths to set
+	 * @param drawLandmarks the drawLandmarks to set
 	 */
-	public void setTree(TreeNode tree) {
-		this.tree = tree;
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		if (this.drawImage)
-			g.drawImage(image, 0, 0, this.getImageWidth(), this.getImageHeight(), null);
-		else {
-			g.setColor(Color.black);
-			g.fillRect(0, 0, this.getImageWidth(), this.getImageHeight());
-		}
-		
-		if (this.isDrawAllNodes()) {
-			for(MapNode node: nodes) {
-				node.draw(g, Color.blue, this.resizeFactor);
-				
-				for(MapNode edgeNode: node.getEdges()) {
-					node.drawEdge(g, edgeNode, Color.blue, this.resizeFactor);
-				}
-			}
-		}
-		
-		if (this.isDrawCandidatePaths() && tree != null) {
-			tree.drawMapNodes(g, Color.white, this.resizeFactor);
-		}
-		
-		if (this.isDrawFinalPath() && path != null) {
-			if (path.getStart() != null)
-				path.getStart().draw(g, Color.red, this.resizeFactor);
-			if (path.getEnd() != null)
-				path.getEnd().draw(g, Color.red, this.resizeFactor);
-			this.drawPath(path, Color.green, g);
-		}
+	public void setDrawLandmarks(boolean drawLandmarks) {
+		this.drawLandmarks = drawLandmarks;
 	}
 	
-	private void drawPath(MapPath path, Color c, Graphics g) {
-		MapNode lastNode = null;
-		for(MapNode node: path.getPath()) {
-			node.draw(g, c, this.resizeFactor);
-			if (lastNode != null)
-				node.drawEdge(g, lastNode, c, this.resizeFactor);
-			lastNode = node;
-		}
+	/**
+	 * @return the renderer
+	 */
+	public GraphRenderer getRenderer() {
+		return renderer;
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		renderer.render(g, drawImage, drawAllNodes, drawLandmarks, drawCandidatePaths, drawFinalPath);
 	}
 
 	@Override
 	public void componentResized(ComponentEvent e) {
 		double w = e.getComponent().getSize().getWidth();
-		this.resizeFactor = w / (double)image.getWidth(null);
-		this.setPreferredSize(new Dimension(this.getImageWidth(),this.getImageHeight()));
+		renderer.setResizeFactor(w / (double)renderer.getRawWidth());
+		this.setPreferredSize(new Dimension(renderer.getGraphWidth(),renderer.getGraphHeight()));
 		this.repaint();
 	}
 
@@ -197,8 +143,8 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int x = (int)((double)e.getX() / this.resizeFactor);
-		int y = (int)((double)e.getY() / this.resizeFactor);
+		int x = (int)((double)e.getX() / renderer.getResizeFactor());
+		int y = (int)((double)e.getY() / renderer.getResizeFactor());
 		
 		MapNode selected = this.selectNode(x, y);
 		if (selectedNode != null && selected != null) {
@@ -211,7 +157,7 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 			if (selectedNode == null && oldSelected == null) {
 				String name = JOptionPane.showInputDialog("Name of (" + x + "," + y + ")?");
 				if (name != null) {
-					this.nodes.add(new MapNode(name,x,y,false));
+					renderer.getNodes().add(new MapNode(name,x,y,false));
 					this.repaint();
 				}
 			} else {
@@ -234,7 +180,7 @@ public class ImagePanel extends JPanel implements ComponentListener,MouseListene
 	public void mouseExited(MouseEvent e) {}
 	
 	private MapNode selectNode(int x, int y) {
-		for (MapNode node: this.nodes) {
+		for (MapNode node: renderer.getNodes()) {
 			if (x >= node.getPoint().getX()-5 && x <= node.getPoint().getX()+5
 			 && y >= node.getPoint().getY()-5 && y <= node.getPoint().getY()+5)
 				return node;

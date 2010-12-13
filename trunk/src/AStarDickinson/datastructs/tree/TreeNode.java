@@ -91,10 +91,16 @@ public class TreeNode {
 	 * 
 	 * @param path The path object to add path components to
 	 */
+	public void assemblePath(MapPath path) {
+		if (this.parent != null)
+			parent.assemblePath(path);
+		path.addNode(this.value);
+	}
+	
 	public void assembleInversePath(MapPath path) {
+		path.addNode(this.value);
 		if (this.parent != null)
 			parent.assembleInversePath(path);
-		path.addNode(this.value);
 	}
 
 	/**

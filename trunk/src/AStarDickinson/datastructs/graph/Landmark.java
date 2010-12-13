@@ -4,20 +4,16 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Landmark extends MapNode {
-	private HashMap<Landmark,Double> distances;
+	private HashMap<MapNode,Double> distances;
 	
-	public Landmark(MapNode node) {
+	public Landmark(MapNode node,Collection<MapNode> graph) {
 		super(node.getName(), node.getPoint().getX(), node.getPoint().getY(), node.isDestination());
-		distances = new HashMap<Landmark,Double>();
+		distances = new HashMap<MapNode,Double>();
+		for(MapNode node1: graph)
+			distances.put(node1, node1.getDistanceToNode(this));
 	}
 	
-	public void setLandmarks(Collection<Landmark> landmarks) {
-		for (Landmark landmark: landmarks) {
-			distances.put(landmark, this.getDistanceToNode(landmark));
-		}
-	}
-	
-	public double landmarkDistance(Landmark landmark) {
+	public double landmarkDistance(MapNode landmark) {
 		return this.distances.get(landmark);
 	}
 }

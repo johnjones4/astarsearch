@@ -12,7 +12,8 @@ import AStarDickinson.datastructs.tree.TreeNode;
  */
 public class AlgorithmReport {
 	private final MapPath finalPath;
-	private final TreeNode root;
+	private final TreeNode[] roots;
+	private final String algName;
 
 	/**
 	 * Construct a new AlgorithmReport using the parameters. These values are
@@ -23,10 +24,11 @@ public class AlgorithmReport {
 	 * @param root
 	 *            The tree of explored nodes
 	 */
-	public AlgorithmReport(MapPath finalPath, TreeNode root) {
+	public AlgorithmReport(String algName,MapPath finalPath, TreeNode[] roots) {
 		super();
+		this.algName = algName;
 		this.finalPath = finalPath;
-		this.root = root;
+		this.roots = roots;
 	}
 
 
@@ -40,15 +42,8 @@ public class AlgorithmReport {
 	/**
 	 * @return the root
 	 */
-	public TreeNode getRoot() {
-		return root;
-	}
-
-	/**
-	 * @return the number of nodes considered
-	 */
-	public int getNumNodesConsidered() {
-		return root.getNumNodes();
+	public TreeNode[] getRoots() {
+		return roots;
 	}
 
 	/**
@@ -57,4 +52,13 @@ public class AlgorithmReport {
 	public int getNumSolutionNodes() {
 		return finalPath.getPath().size();
 	}
+
+
+	/**
+	 * @return the algName
+	 */
+	public String getAlgName() {
+		return algName;
+	}
+
 }

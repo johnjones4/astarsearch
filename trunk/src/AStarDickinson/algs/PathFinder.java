@@ -1,13 +1,19 @@
 package AStarDickinson.algs;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import AStarDickinson.algs.implementations.AStarSearch;
+import AStarDickinson.algs.implementations.BidirectionalSymmetricAStarSearch;
 import AStarDickinson.algs.implementations.BreadthFirstSearch;
 import AStarDickinson.algs.implementations.DepthFirstSearch;
+import AStarDickinson.algs.implementations.StaticALTSearch;
+import AStarDickinson.algs.implementations.StaticRandomALTSearch;
+import AStarDickinson.algs.implementations.ThreadedBidirectionalSymmetricAStarSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
@@ -25,11 +31,8 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	 * @return Returns an AlgorithmReport object that contains information about
 	 *         the solution found.
 	 */
-	protected abstract AlgorithmReport findPath(PathFinderDelegate delegate,
+	public abstract AlgorithmReport findPath(PathFinderDelegate delegate,
 			MapNode start, MapNode end);
-	
-	public run(PathFinderDelegate delegate,
-			MapNode start, MapNode end)
 
 	/**
 	 * This method should return the name of the algorithm
@@ -55,11 +58,11 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	}
 	
 	protected AlgorithmReport buildTree(CollectionWrapper frontier, PathFinderDelegate delegate, MapNode start, MapNode end) {
-		Collection<TreeNode> exploredTreeNodes = new LinkedList<TreeNode>();
+		Collection<TreeNode> exploredTreeNodes = new HashSet<TreeNode>();
 		
 		TreeNode root = new TreeNode(null,start);
 		frontier.put(root);
-		delegate.setRootNode(root);
+		delegate.setRootNodes(new TreeNode[]{root});
 
 		while (!frontier.isEmpty()) {
 			TreeNode node = frontier.get();
@@ -69,12 +72,11 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 				if (child.equals(end)) {
 					node.addChild(childNode);
 					MapPath finalPath = new MapPath(start, end);
-					childNode.assembleInversePath(finalPath);
+					childNode.assemblePath(finalPath);
 					delegate.setFinalPath(finalPath);
-					return new AlgorithmReport(finalPath, root);
+					return new AlgorithmReport(toString(),finalPath, new TreeNode[]{root});
 				} else if (!exploredTreeNodes.contains(childNode)) {
 					node.addChild(childNode);
-					exploredTreeNodes.add(childNode);
 					frontier.put(childNode);
 				}
 				delegate.pathsWereUpdated();
@@ -90,7 +92,7 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	 * 
 	 * @return Map of name->PathFinder
 	 */
-	public static Map<String, PathFinder> getAvailableAlgorithms() {
+	public static Map<String, PathFinder> getAvailableAlgorithms(List<MapNode> graph) {
 		Map<String, PathFinder> algs = new TreeMap<String, PathFinder>();
 
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
@@ -101,6 +103,15 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 
 		DepthFirstSearch dfs = new DepthFirstSearch();
 		algs.put(dfs.toString(), dfs);
+		
+		StaticRandomALTSearch staticAltRand = new StaticRandomALTSearch(graph);
+		algs.put(staticAltRand.toString(), staticAltRand);
+		
+		BidirectionalSymmetricAStarSearch biSymA = new BidirectionalSymmetricAStarSearch();
+		algs.put(biSymA.toString(), biSymA);
+		
+		ThreadedBidirectionalSymmetricAStarSearch tbiSymA = new ThreadedBidirectionalSymmetricAStarSearch();
+		algs.put(tbiSymA.toString(), tbiSymA);
 
 		return algs;
 	}
