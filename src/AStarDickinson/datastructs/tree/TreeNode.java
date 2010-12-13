@@ -16,9 +16,10 @@ import AStarDickinson.datastructs.graph.MapPath;
  * 
  */
 public class TreeNode {
-	private TreeNode parent;
-	private Collection<TreeNode> children;
-	private MapNode value;
+	private final TreeNode parent;
+	private final Collection<TreeNode> children;
+	private final MapNode value;
+	private final double cost;
 
 	/**
 	 * Construct a new node that has a parent and a value.
@@ -33,6 +34,10 @@ public class TreeNode {
 		this.parent = parent;
 		this.children = new LinkedList<TreeNode>();
 		this.value = value;
+		if (parent != null)
+			this.cost = value.getDistanceToNode(parent.value) + parent.cost;
+		else
+			this.cost = 0;
 	}
 
 	/**
@@ -128,6 +133,15 @@ public class TreeNode {
 			this.value.drawEdge(g, child.getValue(), c, reduction);
 			child.drawMapNodes(g, c, reduction);
 		}
+	}
+	
+	
+
+	/**
+	 * @return the cost
+	 */
+	public double getCost() {
+		return cost;
 	}
 
 	/*

@@ -77,6 +77,7 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 					return new AlgorithmReport(toString(),finalPath, new TreeNode[]{root});
 				} else if (!exploredTreeNodes.contains(childNode)) {
 					node.addChild(childNode);
+					exploredTreeNodes.add(node);
 					frontier.put(childNode);
 				}
 				delegate.pathsWereUpdated();
