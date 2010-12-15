@@ -84,7 +84,7 @@ public class TreeNode {
 	 */
 	public void addChild(TreeNode node) {
 		if (this.hasAncestor(node))
-			throw new IllegalArgumentException("Cannot add ancsestor node to graph");
+			throw new IllegalArgumentException("Cannot add ancsestor node to graph (" + node.value + ")");
 		
 		this.children.add(node);
 	}
@@ -135,7 +135,17 @@ public class TreeNode {
 		}
 	}
 	
+	public Collection<TreeNode> getAllDescendents() {
+		Collection<TreeNode> collection = new LinkedList<TreeNode>();
+		this.dfs(collection);
+		return collection;
+	}
 	
+	private void dfs(Collection<TreeNode> collection) {
+		for(TreeNode child: this.children)
+			child.dfs(collection);
+		collection.add(this);
+	}
 
 	/**
 	 * @return the cost

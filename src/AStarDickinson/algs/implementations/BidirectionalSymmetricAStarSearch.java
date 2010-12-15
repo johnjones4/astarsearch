@@ -40,19 +40,18 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 			startExploredTreeNodes.put(startNode.getValue(),startNode);
 			for (MapNode child : startNode.getValue().getEdges()) {
 				TreeNode childNode = new TreeNode(startNode,child);
-				if (endExploredTreeNodes.get(childNode.getValue()) != null) {
+				if (startExploredTreeNodes.get(childNode.getValue()) == null) {
 					startNode.addChild(childNode);
-					MapPath path = new MapPath(start, end);
-					joinPaths(path, childNode, endExploredTreeNodes.get(childNode.getValue()));
-					if (path.getPathDistance() < bestPathDistance) {
-						best = path;
-						bestPathDistance = path.getPathDistance();
-						delegate.setFinalPath(path);
-					}
-				} else if (startExploredTreeNodes.get(childNode.getValue()) == null) {
-					startNode.addChild(childNode);
-					startExploredTreeNodes.put(childNode.getValue(),childNode);
 					startFrontier.add(childNode);
+					if (endExploredTreeNodes.get(childNode.getValue()) != null) {
+						MapPath path = new MapPath(start, end);
+						joinPaths(path, childNode, endExploredTreeNodes.get(childNode.getValue()));
+						if (path.getPathDistance() < bestPathDistance) {
+							best = path;
+							bestPathDistance = path.getPathDistance();
+							delegate.setFinalPath(path);
+						}
+					}
 				}
 			}
 			
@@ -61,19 +60,18 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 			endExploredTreeNodes.put(endNode.getValue(),endNode);
 			for (MapNode child : endNode.getValue().getEdges()) {
 				TreeNode childNode = new TreeNode(endNode,child);
-				if (startExploredTreeNodes.get(childNode.getValue()) != null) {
+				if (endExploredTreeNodes.get(childNode.getValue()) == null) {
 					endNode.addChild(childNode);
-					MapPath path = new MapPath(start, end);
-					joinPaths(path, startExploredTreeNodes.get(childNode.getValue()), endNode);
-					if (path.getPathDistance() < bestPathDistance) {
-						best = path;
-						bestPathDistance = path.getPathDistance();
-						delegate.setFinalPath(path);
-					}
-				} else if (endExploredTreeNodes.get(childNode.getValue()) == null) {
-					endNode.addChild(childNode);
-					endExploredTreeNodes.put(childNode.getValue(),childNode);
 					endFrontier.add(childNode);
+					if (startExploredTreeNodes.get(childNode.getValue()) != null) {
+						MapPath path = new MapPath(start, end);
+						joinPaths(path, startExploredTreeNodes.get(childNode.getValue()), endNode);
+						if (path.getPathDistance() < bestPathDistance) {
+							best = path;
+							bestPathDistance = path.getPathDistance();
+							delegate.setFinalPath(path);
+						}
+					} 
 				}
 			}
 			

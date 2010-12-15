@@ -54,7 +54,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Controls"));
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setDestinations(this.graph);
-		this.setPreferredSize(new Dimension(450,300));
+		this.setPreferredSize(new Dimension(500,300));
 		
 		this.drawImage = new JCheckBox("Image", imagePanel.isDrawImage());
 		this.drawNodes = new JCheckBox("All Nodes", imagePanel.isDrawAllNodes());
