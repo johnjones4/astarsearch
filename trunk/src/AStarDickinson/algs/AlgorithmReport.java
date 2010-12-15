@@ -1,5 +1,9 @@
 package AStarDickinson.algs;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
 
@@ -45,6 +49,14 @@ public class AlgorithmReport {
 	public TreeNode[] getRoots() {
 		return roots;
 	}
+	
+	public int getTreesSize() {
+		HashSet<TreeNode> nodes = new HashSet<TreeNode>();
+		for (TreeNode root: this.roots) {
+			nodes.addAll(root.getAllDescendents());
+		}
+		return nodes.size();
+	}
 
 	/**
 	 * @return the number of nodes in the final path
@@ -60,5 +72,4 @@ public class AlgorithmReport {
 	public String getAlgName() {
 		return algName;
 	}
-
 }

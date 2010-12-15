@@ -1,8 +1,7 @@
 package AStarDickinson.algs.implementations;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
@@ -19,8 +18,7 @@ public class StaticRandomALTSearch extends StaticALTSearch {
 
 	@Override
 	protected List<Landmark> precomputeImpl(List<MapNode> graph, int nLandmarks) {
-		Random rand = new Random(new Date().getTime());
-		Vector<Landmark> landmarks = new Vector<Landmark>(nLandmarks);
+		ArrayList<Landmark> landmarks = new ArrayList<Landmark>(nLandmarks);
 		int[] rands = RandomGraphRunner.getRandoms(nLandmarks, graph.size());
 		for (int i = 0; i < nLandmarks; i++) {
 			Landmark landmark = new Landmark(graph.get(rands[i]),graph);

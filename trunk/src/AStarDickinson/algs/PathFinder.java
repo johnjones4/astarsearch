@@ -2,18 +2,15 @@ package AStarDickinson.algs;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import AStarDickinson.algs.implementations.AStarSearch;
 import AStarDickinson.algs.implementations.BidirectionalSymmetricAStarSearch;
 import AStarDickinson.algs.implementations.BreadthFirstSearch;
 import AStarDickinson.algs.implementations.DepthFirstSearch;
-import AStarDickinson.algs.implementations.StaticALTSearch;
+import AStarDickinson.algs.implementations.StaticFarthestALTSearch;
 import AStarDickinson.algs.implementations.StaticRandomALTSearch;
-import AStarDickinson.algs.implementations.ThreadedBidirectionalSymmetricAStarSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
@@ -69,16 +66,15 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 			exploredTreeNodes.add(node);
 			for (MapNode child : node.getValue().getEdges()) {
 				TreeNode childNode = new TreeNode(node,child);
-				if (child.equals(end)) {
+				if (!exploredTreeNodes.contains(childNode)) {
 					node.addChild(childNode);
-					MapPath finalPath = new MapPath(start, end);
-					childNode.assemblePath(finalPath);
-					delegate.setFinalPath(finalPath);
-					return new AlgorithmReport(toString(),finalPath, new TreeNode[]{root});
-				} else if (!exploredTreeNodes.contains(childNode)) {
-					node.addChild(childNode);
-					exploredTreeNodes.add(node);
 					frontier.put(childNode);
+					if (child.equals(end)) {
+						MapPath finalPath = new MapPath(start, end);
+						childNode.assemblePath(finalPath);
+						delegate.setFinalPath(finalPath);
+						return new AlgorithmReport(toString(),finalPath, new TreeNode[]{root});
+					}
 				}
 				delegate.pathsWereUpdated();
 			}
@@ -96,23 +92,17 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	public static Map<String, PathFinder> getAvailableAlgorithms(List<MapNode> graph) {
 		Map<String, PathFinder> algs = new TreeMap<String, PathFinder>();
 
-		BreadthFirstSearch bfs = new BreadthFirstSearch();
-		algs.put(bfs.toString(), bfs);
-
 		AStarSearch astar = new AStarSearch();
 		algs.put(astar.toString(), astar);
 
-		DepthFirstSearch dfs = new DepthFirstSearch();
-		algs.put(dfs.toString(), dfs);
-		
 		StaticRandomALTSearch staticAltRand = new StaticRandomALTSearch(graph);
 		algs.put(staticAltRand.toString(), staticAltRand);
 		
+		StaticFarthestALTSearch staticAltFar = new StaticFarthestALTSearch(graph);
+		algs.put(staticAltFar.toString(), staticAltFar);
+		
 		BidirectionalSymmetricAStarSearch biSymA = new BidirectionalSymmetricAStarSearch();
 		algs.put(biSymA.toString(), biSymA);
-		
-		ThreadedBidirectionalSymmetricAStarSearch tbiSymA = new ThreadedBidirectionalSymmetricAStarSearch();
-		algs.put(tbiSymA.toString(), tbiSymA);
 
 		return algs;
 	}

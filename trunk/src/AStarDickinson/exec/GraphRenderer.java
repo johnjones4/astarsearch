@@ -1,15 +1,12 @@
 package AStarDickinson.exec;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-
 import javax.imageio.ImageIO;
-
 import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;
@@ -138,11 +135,6 @@ public class GraphRenderer {
 			}
 		}
 		
-		if (drawLandmarks && landmarks != null) {
-			for(Landmark landmark: landmarks)
-				landmark.draw(g, Color.yellow, resizeFactor);
-		}
-		
 		if (drawCandidates && trees != null) {
 			int d = 200 / trees.length;
 			int v = 200;
@@ -158,6 +150,11 @@ public class GraphRenderer {
 			if (path.getEnd() != null)
 				path.getEnd().draw(g, Color.red, this.resizeFactor);
 			this.drawPath(path, Color.green, g);
+		}
+		
+		if (drawLandmarks && landmarks != null) {
+			for(Landmark landmark: landmarks)
+				landmark.draw(g, Color.red, resizeFactor);
 		}
 	}
 	
