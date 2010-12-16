@@ -26,7 +26,7 @@ public abstract class GraphExperimentRunner {
 	public static final String FORMAT = "PNG";
 	public static final int SCREEN_OUTPUT = 0;
 	public static final int IMAGE_OUTPUT = 1;
-	public static final int TRIALS = 20;
+	public static final int TRIALS = 30;
 	private static final String[] colHeaders = new String[]{"Algorithm","Path Nodes","Path Distance","Tree(s) size","Runtime"};
 
 	private int width;
@@ -98,10 +98,8 @@ public abstract class GraphExperimentRunner {
 		AlgorithmReport report = null;
 		for (int i=0;i<TRIALS;i++) {
 			long start = System.nanoTime();
-			PathFinderDelegate del = null;
-			if (i < 5)
-				del = new AnimationRenderer(algorithm.getName(),width,height,graph,.5);
-			report = algorithm.findPath(new ConsolePathFinderDelegate(del), startNode, endNode);
+			PathFinderDelegate del = null;//
+			report = algorithm.findPath(new ConsolePathFinderDelegate(null), startNode, endNode);
 			long end = System.nanoTime();
 			totaltime += end-start;
 		}
@@ -118,6 +116,8 @@ public abstract class GraphExperimentRunner {
 			showPanel(report,panel);
 		else if (output == IMAGE_OUTPUT)
 			saveGraphImage(report,panel);
+		
+		algorithm.findPath(new AnimationRenderer(algorithm.getName(),width,height,graph,.5), startNode, endNode);
 	}
 	
 	private GraphRenderer render(AlgorithmReport report,PathFinder algorithm, List<MapNode> graph) throws IOException {

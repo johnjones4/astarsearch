@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +19,7 @@ import org.w3c.dom.Element;
 public class MapNode implements Comparable<MapNode> {
 	private String name;
 	private MapPoint point;
-	private Collection<MapNode> edges;
+	private List<MapNode> edges;
 	private Collection<String> edgeNames;
 	private boolean destination;
 
@@ -117,7 +118,7 @@ public class MapNode implements Comparable<MapNode> {
 	 * 
 	 * @return a collection of edges
 	 */
-	public Collection<MapNode> getEdges() {
+	public List<MapNode> getEdges() {
 		return edges;
 	}
 

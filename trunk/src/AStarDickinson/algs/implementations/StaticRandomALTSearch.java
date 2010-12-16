@@ -29,7 +29,7 @@ public class StaticRandomALTSearch extends StaticALTSearch {
 
 	@Override
 	public String getName() {
-		return "ALT Search with Static Random Landmarks";
+		return "ALT Search with Static Random-Selected Landmarks";
 	}
 
 }

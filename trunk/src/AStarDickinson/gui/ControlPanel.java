@@ -18,11 +18,11 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import AStarDickinson.XMLExporter;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.algs.implementations.StaticALTSearch;
+import AStarDickinson.datastructs.XMLExporter;
 import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;

@@ -1,4 +1,4 @@
-package AStarDickinson;
+package AStarDickinson.datastructs;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -52,8 +52,8 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 							delegate.setFinalPath(path);
 						}
 					}
+					delegate.pathsWereUpdated();
 				}
-				delegate.pathsWereUpdated();
 			}
 			
 			// End Step
@@ -72,9 +72,9 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 							bestPathDistance = path.getPathDistance();
 							delegate.setFinalPath(path);
 						}
-					} 
+					}
+					delegate.pathsWereUpdated();
 				}
-				delegate.pathsWereUpdated();
 			}
 		}
 		return new AlgorithmReport(toString(),best,new TreeNode[]{root,rootEnd});
