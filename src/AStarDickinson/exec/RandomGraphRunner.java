@@ -12,7 +12,7 @@ import AStarDickinson.datastructs.graph.MapNode;
 
 public class RandomGraphRunner extends GraphExperimentRunner {
 	
-	public static final int GRAPH_SIZE = 999;
+	public static final int GRAPH_SIZE = 900;
 	public static final int MAX_X = 1000;
 	public static final int MAX_Y = 1000;
 	public static final int TOLERANCE = 100;

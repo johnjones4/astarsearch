@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.ConsolePathFinderDelegate;
 import AStarDickinson.algs.PathFinder;
+import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.algs.implementations.StaticALTSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.GraphPanel;
@@ -25,7 +26,7 @@ public abstract class GraphExperimentRunner {
 	public static final String FORMAT = "PNG";
 	public static final int SCREEN_OUTPUT = 0;
 	public static final int IMAGE_OUTPUT = 1;
-	public static final int TRIALS = 1;
+	public static final int TRIALS = 10;
 	private static final String[] colHeaders = new String[]{"Algorithm","Path Nodes","Path Distance","Tree(s) size","Runtime"};
 
 	private int width;
@@ -97,7 +98,10 @@ public abstract class GraphExperimentRunner {
 		AlgorithmReport report = null;
 		for (int i=0;i<TRIALS;i++) {
 			long start = System.nanoTime();
-			report = algorithm.findPath(new ConsolePathFinderDelegate(new AnimationRenderer(algorithm.getName(),width,height,graph,.5)), startNode, endNode);
+			PathFinderDelegate del = null;
+			if (i < 5)
+				del = new AnimationRenderer(algorithm.getName(),width,height,graph,.5);
+			report = algorithm.findPath(new ConsolePathFinderDelegate(del), startNode, endNode);
 			long end = System.nanoTime();
 			totaltime += end-start;
 		}
