@@ -52,6 +52,12 @@ public abstract class StaticALTSearch extends PathFinder {
 				frontier.add(node);
 			}
 			
+			@Override
+			public boolean contains(TreeNode node) {
+				return frontier.contains(node);
+			}
+			
+			
 		}, delegate, start, end);
 	}
 	
@@ -59,7 +65,7 @@ public abstract class StaticALTSearch extends PathFinder {
 	
 	private class StaticALTComparator implements Comparator<TreeNode> {
 		private MapNode end;
-		
+		private int rands[] = RandomGraphRunner.getRandoms(DEFAULT_SUBSET_SIZE,landmarks.size());
 
 		/**
 		 * Initialize the comparator with the end node.
@@ -74,7 +80,6 @@ public abstract class StaticALTSearch extends PathFinder {
 		public int compare(TreeNode o1, TreeNode o2) {
 			Double best1 = new Double(0);
 			Double best2 = new Double(0);
-			int rands[] = RandomGraphRunner.getRandoms(DEFAULT_SUBSET_SIZE,landmarks.size());
 			for (int i=0;i<DEFAULT_SUBSET_SIZE;i++) {
 				Landmark landmark = landmarks.get(rands[i]);
 				double o1d = this.d(o1.getValue(), landmark);

@@ -18,12 +18,14 @@ import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.implementations.StaticALTSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.GraphPanel;
+import AStarDickinson.render.AnimationRenderer;
+import AStarDickinson.render.GraphRenderer;
 
 public abstract class GraphExperimentRunner {
 	public static final String FORMAT = "PNG";
 	public static final int SCREEN_OUTPUT = 0;
 	public static final int IMAGE_OUTPUT = 1;
-	public static final int TRIALS = 10;
+	public static final int TRIALS = 1;
 	private static final String[] colHeaders = new String[]{"Algorithm","Path Nodes","Path Distance","Tree(s) size","Runtime"};
 
 	private int width;
@@ -95,7 +97,7 @@ public abstract class GraphExperimentRunner {
 		AlgorithmReport report = null;
 		for (int i=0;i<TRIALS;i++) {
 			long start = System.nanoTime();
-			report = algorithm.findPath(new ConsolePathFinderDelegate(), startNode, endNode);
+			report = algorithm.findPath(new ConsolePathFinderDelegate(new AnimationRenderer(algorithm.getName(),width,height,graph,.5)), startNode, endNode);
 			long end = System.nanoTime();
 			totaltime += end-start;
 		}
@@ -135,6 +137,7 @@ public abstract class GraphExperimentRunner {
 		BufferedImage image = new BufferedImage(renderer.getGraphWidth(),renderer.getGraphHeight(),BufferedImage.TYPE_INT_RGB);
 		renderer.render(image.getGraphics(),true,true,true,true,true);
 		ImageIO.write(image, FORMAT, getImageFile(report));
+		image.flush();
 	}
 	
 	private File getImageFile(AlgorithmReport report) {

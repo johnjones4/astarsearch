@@ -20,7 +20,7 @@ import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
 import AStarDickinson.exec.AStarDickinson;
-import AStarDickinson.exec.GraphRenderer;
+import AStarDickinson.render.GraphRenderer;
 
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel implements ComponentListener,MouseListener {

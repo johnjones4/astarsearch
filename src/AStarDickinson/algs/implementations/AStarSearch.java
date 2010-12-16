@@ -38,6 +38,11 @@ public class AStarSearch extends PathFinder {
 			public void put(TreeNode node) {
 				frontier.add(node);
 			}
+
+			@Override
+			public boolean contains(TreeNode node) {
+				return frontier.contains(node);
+			}
 			
 		}, delegate, start, end);
 	}

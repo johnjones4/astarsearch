@@ -40,7 +40,7 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 			startExploredTreeNodes.put(startNode.getValue(),startNode);
 			for (MapNode child : startNode.getValue().getEdges()) {
 				TreeNode childNode = new TreeNode(startNode,child);
-				if (startExploredTreeNodes.get(childNode.getValue()) == null) {
+				if (startExploredTreeNodes.get(childNode.getValue()) == null && !startFrontier.contains(childNode)) {
 					startNode.addChild(childNode);
 					startFrontier.add(childNode);
 					if (endExploredTreeNodes.get(childNode.getValue()) != null) {
@@ -53,6 +53,7 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 						}
 					}
 				}
+				delegate.pathsWereUpdated();
 			}
 			
 			// End Step
@@ -63,7 +64,7 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 				if (endExploredTreeNodes.get(childNode.getValue()) == null) {
 					endNode.addChild(childNode);
 					endFrontier.add(childNode);
-					if (startExploredTreeNodes.get(childNode.getValue()) != null) {
+					if (startExploredTreeNodes.get(childNode.getValue()) != null && !endFrontier.contains(childNode)) {
 						MapPath path = new MapPath(start, end);
 						joinPaths(path, startExploredTreeNodes.get(childNode.getValue()), endNode);
 						if (path.getPathDistance() < bestPathDistance) {
@@ -73,16 +74,14 @@ public class BidirectionalSymmetricAStarSearch extends AStarSearch {
 						}
 					} 
 				}
+				delegate.pathsWereUpdated();
 			}
-			
-			
-			delegate.pathsWereUpdated();
 		}
 		return new AlgorithmReport(toString(),best,new TreeNode[]{root,rootEnd});
 	}
 	
 	protected static void joinPaths(MapPath path,TreeNode startNode,TreeNode endNode) {
-		startNode.assemblePath(path);
+		startNode.getParent().assemblePath(path);
 		endNode.assembleInversePath(path);
 	}
 
