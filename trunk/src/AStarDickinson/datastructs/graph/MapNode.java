@@ -80,9 +80,9 @@ public class MapNode implements Comparable<MapNode> {
 	 *            location in which the edge is drawn.
 	 */
 	public void drawEdge(Graphics g, MapNode edge, Color color, double reduction) {
-		if (!edges.contains(edge))
-			throw new IllegalArgumentException(
-					"That edge is not in this graph.");
+		//if (!edges.contains(edge))
+		//	throw new IllegalArgumentException(
+		//			"That edge is not in this graph. (" + this.toString() + ") - (" + edge.toString() + ")");
 
 		int x1 = (int) ((double) point.getX() * reduction);
 		int y1 = (int) ((double) point.getY() * reduction);

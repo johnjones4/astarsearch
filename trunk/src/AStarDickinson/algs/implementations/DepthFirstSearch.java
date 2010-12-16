@@ -41,6 +41,12 @@ public class DepthFirstSearch extends PathFinder {
 				frontier.push(node);
 			}
 			
+			@Override
+			public boolean contains(TreeNode node) {
+				return frontier.contains(node);
+			}
+			
+			
 		}, delegate, start, end);
 	}
 

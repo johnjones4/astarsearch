@@ -16,23 +16,36 @@ import AStarDickinson.datastructs.tree.TreeNode;
  */
 public class ConsolePathFinderDelegate implements PathFinderDelegate {
 	private TreeNode[] roots;
+	private PathFinderDelegate otherDelegate;
+	
+	public ConsolePathFinderDelegate(PathFinderDelegate otherDelegate) {
+		this.otherDelegate = otherDelegate;
+	}
 
 	@Override
 	public void pathsWereUpdated() {
+		if (this.otherDelegate != null)
+			otherDelegate.pathsWereUpdated();
 	}
 
 	@Override
 	public void setFinalPath(MapPath finalPath) {
 		System.out.println("Final path:\n\t\t" + finalPath.toString());
+		if (this.otherDelegate != null)
+			this.otherDelegate.setFinalPath(finalPath);
 	}
 
 	@Override
 	public void setRootNodes(TreeNode[] nodes) {
 		this.roots = nodes;
+		if (this.otherDelegate != null)
+			this.otherDelegate.setRootNodes(nodes);
 	}
 
 	@Override
 	public void setLandmarks(Collection<Landmark> landmarks) {
 		System.out.println(landmarks.size() + " landmarks chosen.");
+		if (this.otherDelegate != null)
+			this.otherDelegate.setLandmarks(landmarks);
 	}
 }

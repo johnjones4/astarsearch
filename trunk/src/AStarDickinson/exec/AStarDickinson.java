@@ -32,6 +32,7 @@ import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.ControlPanel;
 import AStarDickinson.gui.GraphPanel;
 import AStarDickinson.gui.ReportPanel;
+import AStarDickinson.render.GraphRenderer;
 
 public class AStarDickinson {
 	public static final String DEFAULT_IMAGE = "dickinson1.jpg";

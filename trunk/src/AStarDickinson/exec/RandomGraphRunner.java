@@ -82,7 +82,10 @@ public class RandomGraphRunner extends GraphExperimentRunner {
 	@Override
 	protected void addEdges(MapNode node, int index, List<MapNode> graph) {
 		for (MapNode otherNode: graph) {
-			if (otherNode.getPoint().getX() <= node.getPoint().getX() + TOLERANCE
+			if (!node.equals(otherNode)
+					&& !node.getEdges().contains(otherNode)
+					&& !otherNode.getEdges().contains(node)
+					&& otherNode.getPoint().getX() <= node.getPoint().getX() + TOLERANCE
 					&& otherNode.getPoint().getX() >= node.getPoint().getX() - TOLERANCE
 					&& otherNode.getPoint().getY() <= node.getPoint().getY() + TOLERANCE
 					&& otherNode.getPoint().getY() >= node.getPoint().getY() - TOLERANCE) {

@@ -38,6 +38,12 @@ public class BreadthFirstSearch extends PathFinder {
 				frontier.add(node);
 			}
 			
+			@Override
+			public boolean contains(TreeNode node) {
+				return frontier.contains(node);
+			}
+			
+			
 		}, delegate, start, end);
 	}
 

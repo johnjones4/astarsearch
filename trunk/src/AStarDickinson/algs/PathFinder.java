@@ -66,7 +66,7 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 			exploredTreeNodes.add(node);
 			for (MapNode child : node.getValue().getEdges()) {
 				TreeNode childNode = new TreeNode(node,child);
-				if (!exploredTreeNodes.contains(childNode)) {
+				if (!exploredTreeNodes.contains(childNode) && !frontier.contains(childNode)) {
 					node.addChild(childNode);
 					frontier.put(childNode);
 					if (child.equals(end)) {
@@ -111,5 +111,6 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 		public void put(TreeNode node);
 		public TreeNode get();
 		public boolean isEmpty();
+		public boolean contains(TreeNode node);
 	}
 }
