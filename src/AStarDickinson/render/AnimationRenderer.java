@@ -81,6 +81,7 @@ public class AnimationRenderer implements PathFinderDelegate {
 	}
 	
 	private int nextFrame() {
+		System.out.println(frame);
 		return this.frame++;
 	}
 	

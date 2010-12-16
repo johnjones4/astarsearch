@@ -9,6 +9,7 @@ import AStarDickinson.algs.implementations.AStarSearch;
 import AStarDickinson.algs.implementations.BidirectionalSymmetricAStarSearch;
 import AStarDickinson.algs.implementations.BreadthFirstSearch;
 import AStarDickinson.algs.implementations.DepthFirstSearch;
+import AStarDickinson.algs.implementations.StaticAvoidALTSearch;
 import AStarDickinson.algs.implementations.StaticFarthestALTSearch;
 import AStarDickinson.algs.implementations.StaticRandomALTSearch;
 import AStarDickinson.datastructs.graph.MapNode;
@@ -75,8 +76,8 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 						delegate.setFinalPath(finalPath);
 						return new AlgorithmReport(toString(),finalPath, new TreeNode[]{root});
 					}
+					delegate.pathsWereUpdated();
 				}
-				delegate.pathsWereUpdated();
 			}
 		}
 
@@ -103,6 +104,9 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 		
 		BidirectionalSymmetricAStarSearch biSymA = new BidirectionalSymmetricAStarSearch();
 		algs.put(biSymA.toString(), biSymA);
+		
+	//	StaticAvoidALTSearch staticAltAvoid = new StaticAvoidALTSearch(graph);
+	//	algs.put(staticAltAvoid.toString(), staticAltAvoid);
 
 		return algs;
 	}

@@ -55,7 +55,7 @@ public class StaticFarthestALTSearch extends StaticALTSearch {
 
 	@Override
 	public String getName() {
-		return "ALT Search with Static Farthest Heuristic Landmarks";
+		return "ALT Search with Static Farthest-Selected Landmarks";
 	}
 
 }
