@@ -26,7 +26,7 @@ public abstract class GraphExperimentRunner {
 	public static final String FORMAT = "PNG";
 	public static final int SCREEN_OUTPUT = 0;
 	public static final int IMAGE_OUTPUT = 1;
-	public static final int TRIALS = 10;
+	public static final int TRIALS = 20;
 	private static final String[] colHeaders = new String[]{"Algorithm","Path Nodes","Path Distance","Tree(s) size","Runtime"};
 
 	private int width;
