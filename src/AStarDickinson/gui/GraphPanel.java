@@ -1,24 +1,14 @@
 package AStarDickinson.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
-import AStarDickinson.datastructs.graph.MapPath;
-import AStarDickinson.datastructs.tree.TreeNode;
 import AStarDickinson.exec.AStarDickinson;
 import AStarDickinson.render.GraphRenderer;
 

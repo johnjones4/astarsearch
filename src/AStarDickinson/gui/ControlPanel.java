@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
-import AStarDickinson.algs.implementations.StaticALTSearch;
 import AStarDickinson.datastructs.XMLExporter;
 import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
@@ -30,7 +29,7 @@ import AStarDickinson.datastructs.tree.TreeNode;
 
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel implements ActionListener {
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private Vector destNodes;
 	private GraphPanel imagePanel;
 	private ReportPanel reportPanel;
@@ -113,7 +112,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		return panel;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void setDestinations(Collection<MapNode> allnodes) {
 		TreeSet<MapNode> sorter = new TreeSet<MapNode>(); 
 		for (MapNode node: allnodes)
@@ -123,7 +122,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		destNodes.insertElementAt("Select a Location", 0);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private Vector getAlgsVector() {
 		Vector algs = new Vector(PathFinder.getAvailableAlgorithms(this.graph).values());
 		algs.insertElementAt("Select an Algorithm", 0);

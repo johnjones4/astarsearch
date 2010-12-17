@@ -1,15 +1,19 @@
 package AStarDickinson.algs.implementations;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import java.util.Vector;
 
 import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.exec.RandomGraphRunner;
 
+/**
+ * This implementation of ALT uses random landmark selection as described in
+ * Goldberg and Harrelson.
+ * 
+ * @author johnjones
+ * 
+ */
 public class StaticRandomALTSearch extends StaticALTSearch {
 
 	public StaticRandomALTSearch(List<MapNode> graph) {
@@ -21,7 +25,7 @@ public class StaticRandomALTSearch extends StaticALTSearch {
 		ArrayList<Landmark> landmarks = new ArrayList<Landmark>(nLandmarks);
 		int[] rands = RandomGraphRunner.getRandoms(nLandmarks, graph.size());
 		for (int i = 0; i < nLandmarks; i++) {
-			Landmark landmark = new Landmark(graph.get(rands[i]),graph);
+			Landmark landmark = new Landmark(graph.get(rands[i]), graph);
 			landmarks.add(landmark);
 		}
 		return landmarks;

@@ -7,9 +7,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import AStarDickinson.algs.implementations.AStarSearch;
 import AStarDickinson.algs.implementations.BidirectionalSymmetricAStarSearch;
-import AStarDickinson.algs.implementations.BreadthFirstSearch;
-import AStarDickinson.algs.implementations.DepthFirstSearch;
-import AStarDickinson.algs.implementations.StaticAvoidALTSearch;
 import AStarDickinson.algs.implementations.StaticFarthestALTSearch;
 import AStarDickinson.algs.implementations.StaticRandomALTSearch;
 import AStarDickinson.datastructs.graph.MapNode;
@@ -54,27 +51,47 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	public String toString() {
 		return this.getName();
 	}
-	
-	protected AlgorithmReport buildTree(CollectionWrapper frontier, PathFinderDelegate delegate, MapNode start, MapNode end) {
+
+	/**
+	 * This generic tree searching algorithm is used by subclasses of
+	 * PathFinder. It uses a wrapper class for the frontier so subclasses can
+	 * implement specific behavior.
+	 * 
+	 * (implementation from Russell and Norvig)
+	 * 
+	 * @param frontier
+	 *            Nodes to explore
+	 * @param delegate
+	 *            Delegate to inform when actions take place
+	 * @param start
+	 *            The start vertex
+	 * @param end
+	 *            The end vertex
+	 * @return A path solution
+	 */
+	protected AlgorithmReport buildTree(CollectionWrapper frontier,
+			PathFinderDelegate delegate, MapNode start, MapNode end) {
 		Collection<TreeNode> exploredTreeNodes = new HashSet<TreeNode>();
-		
-		TreeNode root = new TreeNode(null,start);
+
+		TreeNode root = new TreeNode(null, start);
 		frontier.put(root);
-		delegate.setRootNodes(new TreeNode[]{root});
+		delegate.setRootNodes(new TreeNode[] { root });
 
 		while (!frontier.isEmpty()) {
 			TreeNode node = frontier.get();
 			exploredTreeNodes.add(node);
 			for (MapNode child : node.getValue().getEdges()) {
-				TreeNode childNode = new TreeNode(node,child);
-				if (!exploredTreeNodes.contains(childNode) && !frontier.contains(childNode)) {
+				TreeNode childNode = new TreeNode(node, child);
+				if (!exploredTreeNodes.contains(childNode)
+						&& !frontier.contains(childNode)) {
 					node.addChild(childNode);
 					frontier.put(childNode);
 					if (child.equals(end)) {
 						MapPath finalPath = new MapPath(start, end);
 						childNode.assemblePath(finalPath);
 						delegate.setFinalPath(finalPath);
-						return new AlgorithmReport(toString(),finalPath, new TreeNode[]{root});
+						return new AlgorithmReport(toString(), finalPath,
+								new TreeNode[] { root });
 					}
 					delegate.pathsWereUpdated();
 				}
@@ -90,7 +107,8 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 	 * 
 	 * @return Map of name->PathFinder
 	 */
-	public static Map<String, PathFinder> getAvailableAlgorithms(List<MapNode> graph) {
+	public static Map<String, PathFinder> getAvailableAlgorithms(
+			List<MapNode> graph) {
 		Map<String, PathFinder> algs = new TreeMap<String, PathFinder>();
 
 		AStarSearch astar = new AStarSearch();
@@ -98,23 +116,31 @@ public abstract class PathFinder implements Comparable<PathFinder> {
 
 		StaticRandomALTSearch staticAltRand = new StaticRandomALTSearch(graph);
 		algs.put(staticAltRand.toString(), staticAltRand);
-		
-		StaticFarthestALTSearch staticAltFar = new StaticFarthestALTSearch(graph);
+
+		StaticFarthestALTSearch staticAltFar = new StaticFarthestALTSearch(
+				graph);
 		algs.put(staticAltFar.toString(), staticAltFar);
-		
+
 		BidirectionalSymmetricAStarSearch biSymA = new BidirectionalSymmetricAStarSearch();
 		algs.put(biSymA.toString(), biSymA);
-		
-	//	StaticAvoidALTSearch staticAltAvoid = new StaticAvoidALTSearch(graph);
-	//	algs.put(staticAltAvoid.toString(), staticAltAvoid);
 
 		return algs;
 	}
-	
+
+	/**
+	 * This wrapper interface is used by buildTree's frontier object. Subclasses
+	 * may implement this interface to provide specific frontier behaviors.
+	 * 
+	 * @author johnjones
+	 * 
+	 */
 	protected interface CollectionWrapper {
 		public void put(TreeNode node);
+
 		public TreeNode get();
+
 		public boolean isEmpty();
+
 		public boolean contains(TreeNode node);
 	}
 }

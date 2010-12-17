@@ -60,12 +60,14 @@ public class TreeNode {
 	public MapNode getValue() {
 		return value;
 	}
-	
+
 	/**
 	 * Check if the node given is an ancestor of this node or the same node
 	 * 
-	 * @param node Node to check
-	 * @return True if they are the same node or if the given node is an ancestor of this node
+	 * @param node
+	 *            Node to check
+	 * @return True if they are the same node or if the given node is an
+	 *         ancestor of this node
 	 */
 	public boolean hasAncestor(TreeNode node) {
 		if (this.equals(node))
@@ -84,8 +86,9 @@ public class TreeNode {
 	 */
 	public void addChild(TreeNode node) {
 		if (this.hasAncestor(node))
-			throw new IllegalArgumentException("Cannot add ancsestor node to graph (" + node.value + ")");
-		
+			throw new IllegalArgumentException(
+					"Cannot add ancsestor node to graph (" + node.value + ")");
+
 		this.children.add(node);
 	}
 
@@ -94,14 +97,15 @@ public class TreeNode {
 	 * value at the root node is the first component in the path and this node's
 	 * value is the last component in the path
 	 * 
-	 * @param path The path object to add path components to
+	 * @param path
+	 *            The path object to add path components to
 	 */
 	public void assemblePath(MapPath path) {
 		if (this.parent != null)
 			parent.assemblePath(path);
 		path.addNode(this.value);
 	}
-	
+
 	public void assembleInversePath(MapPath path) {
 		path.addNode(this.value);
 		if (this.parent != null)
@@ -110,6 +114,7 @@ public class TreeNode {
 
 	/**
 	 * Get the number of descendants of this node
+	 * 
 	 * @return The number of descendants
 	 */
 	public int getNumNodes() {
@@ -121,11 +126,15 @@ public class TreeNode {
 	}
 
 	/**
-	 * Draw this node's value and edges to its childrens' values to model the graph that the values are based upon 
+	 * Draw this node's value and edges to its childrens' values to model the
+	 * graph that the values are based upon
 	 * 
-	 * @param g The graphics context to draw to
-	 * @param c The color to draw with
-	 * @param reduction The resize factor
+	 * @param g
+	 *            The graphics context to draw to
+	 * @param c
+	 *            The color to draw with
+	 * @param reduction
+	 *            The resize factor
 	 */
 	public void drawMapNodes(Graphics g, Color c, double reduction) {
 		this.value.draw(g, c, reduction);
@@ -134,15 +143,26 @@ public class TreeNode {
 			child.drawMapNodes(g, c, reduction);
 		}
 	}
-	
+
+	/**
+	 * Get all descendant nodes (including this node)
+	 * 
+	 * @return A collection of nodes
+	 */
 	public Collection<TreeNode> getAllDescendents() {
 		Collection<TreeNode> collection = new LinkedList<TreeNode>();
 		this.dfs(collection);
 		return collection;
 	}
-	
+
+	/**
+	 * Depth-first-search explore this tree and add each node found to the
+	 * collection
+	 * 
+	 * @param collection An collection to add nodes to
+	 */
 	private void dfs(Collection<TreeNode> collection) {
-		for(TreeNode child: this.children)
+		for (TreeNode child : this.children)
 			child.dfs(collection);
 		collection.add(this);
 	}

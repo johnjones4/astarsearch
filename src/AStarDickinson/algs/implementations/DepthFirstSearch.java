@@ -1,14 +1,10 @@
 package AStarDickinson.algs.implementations;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.PathFinder;
 import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.datastructs.graph.MapNode;
-import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
 
 /**

@@ -44,6 +44,7 @@ public class ReportPanel extends JPanel {
 	}
 	
 	public void setAlgorithmReport(AlgorithmReport rep) {
+		this.setNodesConsidered(rep.getTreesSize());
 		this.setNodesInPath(rep.getNumSolutionNodes());
 		this.setPathDistance(rep.getFinalPath().getPathDistance());
 	}

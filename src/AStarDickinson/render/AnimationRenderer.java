@@ -19,7 +19,6 @@ public class AnimationRenderer implements PathFinderDelegate {
 	private static final String ANIMATION_DIR = "animation/";
 	
 	private long stamp;
-	private String name;
 	private int frame;
 	private int width;
 	private int height;
@@ -31,8 +30,7 @@ public class AnimationRenderer implements PathFinderDelegate {
 	private MapPath finalPath;
 	
 	
-	public AnimationRenderer(String name,int width, int height,Collection<MapNode> nodes, double resizeFactor) {
-		this.name = name;
+	public AnimationRenderer(int width, int height,Collection<MapNode> nodes, double resizeFactor) {
 		this.width = width;
 		this.height = height;
 		this.resizeFactor = resizeFactor;
