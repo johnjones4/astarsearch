@@ -8,18 +8,14 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-
 import AStarDickinson.algs.AlgorithmReport;
 import AStarDickinson.algs.ConsolePathFinderDelegate;
 import AStarDickinson.algs.PathFinder;
-import AStarDickinson.algs.PathFinderDelegate;
 import AStarDickinson.algs.implementations.StaticALTSearch;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.GraphPanel;
-import AStarDickinson.render.AnimationRenderer;
 import AStarDickinson.render.GraphRenderer;
 
 public abstract class GraphExperimentRunner {
@@ -95,19 +91,27 @@ public abstract class GraphExperimentRunner {
 	private void runAlgorithm(PathFinder algorithm) throws IOException  {		
 		System.out.println(algorithm.getName());
 		long totaltime = 0;
+		long totalPathSize = 0;
+		long totalPathDistance = 0;
+		long totalTreesSize = 0;
+	
 		AlgorithmReport report = null;
 		for (int i=0;i<TRIALS;i++) {
+			
 			long start = System.nanoTime();
-			PathFinderDelegate del = null;//
 			report = algorithm.findPath(new ConsolePathFinderDelegate(null), startNode, endNode);
 			long end = System.nanoTime();
+			
 			totaltime += end-start;
+			totalPathSize += report.getFinalPath().getPath().size();
+			totalPathDistance += report.getFinalPath().getPathDistance();
+			totalTreesSize += report.getTreesSize();
 		}
 		
 		this.printOut.print(report.getAlgName() + ",");
-		this.printOut.print(report.getFinalPath().getPath().size() + ",");
-		this.printOut.print(report.getFinalPath().getPathDistance() + ",");
-		this.printOut.print(report.getTreesSize() + ",");
+		this.printOut.print(totalPathSize/TRIALS + ",");
+		this.printOut.print(totalPathDistance/TRIALS + ",");
+		this.printOut.print(totalTreesSize/TRIALS + ",");
 		this.printOut.print(totaltime/TRIALS);
 		this.printOut.println();
 		
@@ -117,7 +121,7 @@ public abstract class GraphExperimentRunner {
 		else if (output == IMAGE_OUTPUT)
 			saveGraphImage(report,panel);
 		
-		algorithm.findPath(new AnimationRenderer(algorithm.getName(),width,height,graph,.5), startNode, endNode);
+		//algorithm.findPath(new AnimationRenderer(algorithm.getName(),width,height,graph,.5), startNode, endNode);
 	}
 	
 	private GraphRenderer render(AlgorithmReport report,PathFinder algorithm, List<MapNode> graph) throws IOException {

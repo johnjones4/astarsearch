@@ -2,17 +2,12 @@ package AStarDickinson.exec;
 
 import java.awt.BorderLayout;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Vector;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
@@ -26,8 +21,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import AStarDickinson.algs.ConsolePathFinderDelegate;
-import AStarDickinson.algs.PathFinder;
 import AStarDickinson.datastructs.graph.MapNode;
 import AStarDickinson.gui.ControlPanel;
 import AStarDickinson.gui.GraphPanel;
@@ -61,19 +54,6 @@ public class AStarDickinson {
 		panel1.add(reportPanel,BorderLayout.PAGE_END);
 		JFrame frame1 = makeFrame(panel1);
 		frame1.setResizable(false);
-	}
-	
-	/**
-	 * Filter a list of map nodes for only "destination" nodes
-	 * @param nodes A list of all nodes.  This collection is not modified
-	 * @return A new list of only destination nodes
-	 */
-	private static List<MapNode> filterForDestinations(Collection<MapNode> nodes) {
-		ArrayList<MapNode> arraylist = new ArrayList<MapNode>();
-		for(MapNode node: nodes)
-			if (node.isDestination())
-				arraylist.add(node);
-		return arraylist;
 	}
 	
 	/**
@@ -157,6 +137,8 @@ public class AStarDickinson {
 		    // Add the name to the list
 		    names.add(name);
 		}
+		
+		System.out.println(names.size());
 		
 		// Return the list
 		return names;

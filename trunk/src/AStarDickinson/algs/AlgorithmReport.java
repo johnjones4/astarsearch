@@ -1,9 +1,6 @@
 package AStarDickinson.algs;
 
-import java.util.Collection;
 import java.util.HashSet;
-
-import AStarDickinson.datastructs.graph.Landmark;
 import AStarDickinson.datastructs.graph.MapPath;
 import AStarDickinson.datastructs.tree.TreeNode;
 

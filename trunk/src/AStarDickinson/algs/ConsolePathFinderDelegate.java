@@ -15,7 +15,6 @@ import AStarDickinson.datastructs.tree.TreeNode;
  * 
  */
 public class ConsolePathFinderDelegate implements PathFinderDelegate {
-	private TreeNode[] roots;
 	private PathFinderDelegate otherDelegate;
 	
 	public ConsolePathFinderDelegate(PathFinderDelegate otherDelegate) {
@@ -37,7 +36,6 @@ public class ConsolePathFinderDelegate implements PathFinderDelegate {
 
 	@Override
 	public void setRootNodes(TreeNode[] nodes) {
-		this.roots = nodes;
 		if (this.otherDelegate != null)
 			this.otherDelegate.setRootNodes(nodes);
 	}
